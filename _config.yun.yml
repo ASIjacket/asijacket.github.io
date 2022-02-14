@@ -179,13 +179,10 @@ menu:
     - type: tags
       path: /tags/
       icon: icon-price-tag-3-line
-    # - path: https://www.yunyoujun.cn
-    #   icon: icon-cloud-line
-    #   count: 你猜
   custom:
-    title: 文档
-    path: https://yun.yunyoujun.cn
-    icon: icon-settings-line
+    title:
+    path:
+    icon:
 
 # 页面链接
 pages:
@@ -406,38 +403,15 @@ algolia_search:
 comment:
   enable: true
   tips:
-    - 若您想及时得到回复提醒，建议跳转 GitHub Issues 评论。
+    - 要不要和我说些什么？
   # 候选评论系统  
-  candidates:
-    - valine
-    - utterances
-
-
-
-
-
-github_issues:
-  enable: false
-
-github_discussions:
-  enable: false
-
-disqusjs:
-  enable: false
-  shortname: yunyoujun
-  apikey: ouoGQCaamOKdJgyZU5DKcpFnRIg3SNzvk0nwygPtlcTRJuE68c8igvrZGW4wAJoN
-
-# https://github.com/laymonage/giscus
-giscus:
-  enable: false
-  repo: YunYouJun/yunyoujun.github.io
-  repo-id:
-  category-id:
-  mapping: pathname
-  reactions-enabled: 1
-  emit-metadata: 0
-  theme: light
-
-
+  # candidates:
+  #   - waline
+waline:
+  enable: true
+  serverURL: https://blog-comment-pi.vercel.app
+  # visitor: true
+  # display comment count
+  comment: false
 
 
