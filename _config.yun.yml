@@ -265,6 +265,11 @@ toc:
   # 折叠目录
   collapse: false
 
+# 仓库跳转编辑图标
+post_edit:
+  enable: false
+  url: https://github.com/ASIjacket/asijacket.github.io/tree/hexo/source/
+
 # 代码一键复制按钮
 codeblock:
   copy_btn: true
@@ -373,28 +378,43 @@ google_adsense:
   enable: false
   client: 
 
-# SEO
+# Google 跟踪代码管理器
+google_tagmanager:
+  enable: false
+  id: 
 
+# 百度搜索资源平台
+baidu_push: true
 
-comment:
-  candidates:
-    - waline
-    # - giscus
-  tips:
-    - 如果您有任何关于博客内容的相关讨论，欢迎前往 <a href="https://github.com/YunYouJun/yunyoujun.github.io/discussions" target="_blank">GitHub Discussions</a> 与我交流。
-
-waline:
+# 引擎搜索 
+engine_search:
   enable: true
-  serverURL: https://waline.yunyoujun.cn
-  visitor: true
-  comment: true
-  emoji:
-    - https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/bilibili/
-    - https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/weibo/
-    - https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/qq/
-  locale:
-    placeholder: 填写邮箱，可以收到回复通知哦～
-  requiredMeta: ["nick"]
+  href: "https://www.google.com/search?q=site:"
+  # href: "https://www.baidu.com/s?wd=site:"
+  # href: "https://www.bing.com/search?q=site:"
+  domain: blog.kirakira.eu
+
+# 本地搜索 需安装 需关闭引擎搜索
+engine_search:
+  enable: false
+
+# Algolia搜索 需安装
+algolia_search:
+  enable: false
+
+# 评论
+comment:
+  enable: true
+  tips:
+    - 若您想及时得到回复提醒，建议跳转 GitHub Issues 评论。
+  # 候选评论系统  
+  candidates:
+    - valine
+    - utterances
+
+
+
+
 
 github_issues:
   enable: false
@@ -419,33 +439,5 @@ giscus:
   theme: light
 
 
-
-engine_search:
-  enable: false
-
-# If you want to use it, you need config algolia appID in _config.yml!!!
-# https://github.com/oncletom/hexo-algolia
-
-  # ...
-
-
-
-
-post_edit:
-  enable: true
-  url: https://github.com/YunYouJun/yunyoujun.github.io/tree/hexo/source/
-
-
-baidu_push: true
-
-google_tagmanager:
-  enable: true
-  # id: GTM-M9KWR9L
-
-
-say:
-  api: https://el-bot-api.vercel.app/api/words/young
-  hitokoto:
-    enable: false
 
 
