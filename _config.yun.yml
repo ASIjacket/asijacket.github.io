@@ -1,11 +1,153 @@
 mode: auto
 
+# 主题色
+colors:
+  primary: "#6200ee"
+  # bg: "#F5F5F5"
+  selection_bg: "#8e71c1" # 选取文字时的背景色
+  # 标签云中标签的起始色和结束色
+  # tag_start_color:
+  # tag_end_color:
+
+# 标签 颜色
+tags:
+  动画: crimson
+  漫画: orange
+  Parcel: "#21374b"
+
+# 分类 颜色
+categories:
+  云游的小视频: "#FB7299"
+
+
+##资源根目录 /source/####################################
+
+# head加载
+head:
+  css:
+    custom: /css/custom.css
+  js:
+    base:
+    async:
+    defer:
+
+# 网站图标 svg
+# favicon: /favicon.ico
+
+# CDN jsdelivr刷新需要24h
+cdn:
+  # pre: https://cdn.jsdelivr.net/gh/ASIjacket/asijacket.github.io@latest
+  pre: ""
+  css:
+  js:
+    base:
+    async:
+      # 默认引入的图标资源，使用 iconfont
+      # iconfont: 
+    defer:
+
+# 预加载
+preload:
+  style:
+    - /css/hexo-theme-yun.css
+  script:
+    - /js/hexo-theme-yun.js
+prefetch:
+  script:
+    - /js/sidebar.js
+dns_prefetch:
+# do more(TCP handshake...) than dns-fetch
+preconnect:
+  - https://cdn.jsdelivr.net
+
+
+##侧边栏####################################
+
+# 背景与标签
+sidebar:
+  bg_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/stars-timing-1.jpg
+  bg_position: bottom 3rem center
+  tagcloud:
+    enable: false
+    amount: 20
+
+# 头像
 avatar:
   url: /images/avatar.jpg
+  rounded: true
+  opacity: 1
+  mickey_mouse: false
   status:
     enable: true
     emoji: 🌑
-    message: Looking for dawn.
+    message: Looking
+
+# 社交图标
+social:
+  - name: RSS
+    # set rss in your root config
+    # https://github.com/hexojs/hexo-generator-feed
+    link: /atom.xml # config.feed.path
+    icon: icon-rss-line
+    color: orange
+  - name: Telegram
+    link: https://t.me/AIKETI
+    icon: icon-telegram-line
+    color: "#0088CC"
+
+# 导航
+menu:
+  home:
+    path: /
+    icon: icon-home-4-line
+  list:
+    - type: archives
+      path: /archives/
+      icon: icon-archive-line
+    - type: categories
+      path: /categories/
+      icon: icon-folder-2-line
+    - type: tags
+      path: /tags/
+      icon: icon-price-tag-3-line
+    # - path: https://www.yunyoujun.cn
+    #   icon: icon-cloud-line
+    #   count: 你猜
+  custom:
+    title: 文档
+    path: https://yun.yunyoujun.cn
+    icon: icon-settings-line
+
+# 页面链接
+pages:
+  # - name: 我的小伙伴们
+  #   url: /links/
+  #   icon: icon-genderless-line
+  #   color: dodgerblue
+
+
+######################################
+# 主页
+# 标语动画
+banner:
+  enable: true
+  title: 
+    - Kirakira
+    - Blog
+  border: true
+  cloud:
+    enable: true
+    color: "white"
+  go_down:
+    enable: true
+    icon: icon-arrow-down-s-line
+
+# 公告
+notice:
+  enable: false
+  content: Thanks.
+
+
 
 reward:
   enable: false
@@ -92,14 +234,7 @@ albums:
 girls:
   enable: false
 
-tags:
-  动画: crimson
-  漫画: orange
-  Parcel: "#21374b"
 
-
-categories:
-  云游的小视频: "#FB7299"
 
 pages:
   - name: 我的小伙伴们
@@ -111,11 +246,7 @@ pages:
     icon: icon-women-line
     color: hotpink
 
-menu:
-  custom:
-    title: 留言板
-    path: /about/#comment
-    icon: icon-clipboard-line
+
 
 cursor:
   enable: true
@@ -132,11 +263,4 @@ say:
   hitokoto:
     enable: false
 
-# 账号
-social:
-  - name: RSS
-    # set rss in your root config
-    # https://github.com/hexojs/hexo-generator-feed
-    link: /atom.xml # config.feed.path
-    icon: icon-rss-line
-    color: orange
+
