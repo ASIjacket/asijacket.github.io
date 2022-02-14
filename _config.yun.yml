@@ -395,8 +395,8 @@ engine_search:
   domain: blog.kirakira.eu
 
 # 本地搜索 需安装 需关闭引擎搜索
-engine_search:
-  enable: false
+local_search:
+  enable: true
 
 # Algolia搜索 需安装
 algolia_search:
