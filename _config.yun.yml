@@ -126,8 +126,8 @@ pages:
   #   color: dodgerblue
 
 
-######################################
-# 主页
+##主页####################################
+
 # 标语动画
 banner:
   enable: true
@@ -147,6 +147,8 @@ notice:
   enable: false
   content: Thanks.
 
+
+##文章####################################
 
 
 reward:
@@ -233,20 +235,6 @@ albums:
 
 girls:
   enable: false
-
-
-
-pages:
-  - name: 我的小伙伴们
-    url: /links/
-    icon: icon-genderless-line
-    color: dodgerblue
-  - name: 喜欢的女孩子
-    url: /girls/
-    icon: icon-women-line
-    color: hotpink
-
-
 
 cursor:
   enable: true
