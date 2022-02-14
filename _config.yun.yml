@@ -96,6 +96,10 @@ head:
       iconfont: //at.alicdn.com/t/font_1140697_dxory92pb0h.js
     defer:
 
+# 批量引入.styl
+custom:
+  # style: source/_data/style/*
+
 # 网站图标 svg
 # favicon: /favicon.ico
 
@@ -212,15 +216,165 @@ notice:
   enable: false
   content: Thanks.
 
+# 记录喜欢的女孩子们 需安装
+girls:
+  enable: true
+
+# 相册 
+albums:
+  enable: false
+
+#随机在主页显示一句话
+say:
+  enable: false
+  api: https://cdn.jsdelivr.net/gh/ElpsyCN/say@gh-pages/sentences.json
+  # https://developer.hitokoto.cn/sentence/
+  # 一言api 优先级高于 默认api
+  hitokoto:
+    enable: false
+    api: https://v1.hitokoto.cn
+
+# 默哀
+mourn:
+  enable: false
+  days:
+    - "4-4"
 
 ##文章####################################
 
+#内容卡片
+post_card:
+  opacity: 0.8
 
+# 信息显示
+post_meta:
+  # 信息显示为文字
+  item_text: false
+  created_at: true
+  updated_at: true
+  categories: true
+  tags: true
+
+# 目录
+toc:
+  # 显示编号
+  list_number: false
+  max_depth: 6
+  min_depth: 1
+  placeholder: 很遗憾，咱没写啥目录
+  # 折叠目录
+  collapse: false
+
+# 代码一键复制按钮
+codeblock:
+  copy_btn: true
+
+# 设置版权
+creative_commons:
+  license: by-nc-sa
+  # 文章末尾显示
+  post: true
+  language: deed.zh
+  # 剪贴板中追加版权信息
+  clipboard: false
+
+# 图片懒加载
+lazyload:
+  enable: true
+
+# 打赏
 reward:
   enable: false
+  icon: icon-hand-coin-line
   comment: 我很可爱，请给我钱
   methods:
     - name: 
+      path: 
+      color: "#00A3EE"
+      icon: icon-alipay-line
+
+# 文章type定义
+types:
+  link:
+    color: blue
+    icon: icon-external-link-line
+  bilibili:
+    color: "#FF8EB3"
+    icon: icon-bilibili-line
+  douban:
+    color: "#007722"
+    icon: icon-douban-line
+  github:
+    color: black
+    icon: icon-github-line
+  netease-cloud-music:
+    color: "#C10D0C"
+    icon: icon-netease-cloud-music-line
+  notion:
+    color: black
+    icon: icon-notion
+  twitter:
+    color: "#1da1f2"
+    icon: icon-twitter-line
+  wechat:
+    color: "#1AAD19"
+    icon: icon-wechat-2-line
+  weibo:
+    color: "#E6162D"
+    icon: icon-weibo-line
+  yuque:
+    color: "#25b864"
+    icon: icon-yuque
+  zhihu:
+    color: "#0084FF"
+    icon: icon-zhihu-line
+
+
+##页脚####################################
+
+footer:
+  since: 2020
+  icon:
+    name: icon-cloud-line
+    animated: true
+    color: "#0078E7"
+    url: 
+    title:
+  powered:
+    enable: false
+  beian:
+    enable: false
+    icp:
+  support:
+    enable: false
+    title:
+    link:
+    logo:
+    prefix:
+    suffix:
+  live_time:
+    enable: false
+    prefix: 本博客已萌萌哒地运行
+    suffix: (●'◡'●)
+    start_time: "2019-04-12T00:00:00"
+  #自定义文本 可以包含 HTML
+  custom_text:
+
+
+##优化分析####################################
+
+# 谷歌分析
+google_analytics:
+  enable: true
+  id: G-EHWHX6L2NJ
+
+# 谷歌广告
+google_adsense:
+  enable: false
+  client: 
+
+# SEO
+
 
 comment:
   candidates:
@@ -264,16 +418,7 @@ giscus:
   emit-metadata: 0
   theme: light
 
-footer:
-  since: 2020
-  icon:
-    url: 
-  beian:
-    enable: false
-  support:
-    enable: false
 
-  custom_text:
 
 engine_search:
   enable: false
@@ -283,23 +428,13 @@ engine_search:
 
   # ...
 
-# google_analytics:
-#   enable: true
-#   id: G-1LL0D86CY9
 
-google_adsense:
-  enable: true
-  client: ca-pub-2245427233262012
+
 
 post_edit:
   enable: true
   url: https://github.com/YunYouJun/yunyoujun.github.io/tree/hexo/source/
 
-albums:
-  enable: true
-
-girls:
-  enable: false
 
 baidu_push: true
 
