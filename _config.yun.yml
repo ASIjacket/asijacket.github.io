@@ -9,6 +9,23 @@ colors:
   # tag_start_color:
   # tag_end_color:
 
+# 图片背景
+bg_image:
+  enable: true
+  url: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/stars-timing-0-blur-30px.jpg
+  # 暗色模式背景图片
+  # dark:
+  # 设置背景模糊程度 建议原图处理
+  # blur: 30px 
+  opacity: 0.8
+
+# 搜索背景
+search:
+  modal: true
+  bg_image: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/stars-timing-2.jpg
+  # dark_bg_image: 
+  # placeholder:
+
 # 标签 颜色
 tags:
   动画: crimson
@@ -19,6 +36,52 @@ tags:
 categories:
   云游的小视频: "#FB7299"
 
+# 字体 非自带需 head:css:font 引入
+font:
+  cdn:
+    enable: true
+    lib:
+      - https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&display=swap
+  serif:
+    family: "'Songti SC', 'Noto Serif SC', STZhongsong, STKaiti, KaiTi, Roboto, serif"
+    weight: 900
+  sans_serif:
+    family: "'PingFang SC', 'Microsoft YaHei', Roboto, Arial, sans-serif"
+    weight: 400
+  monospace:
+    family: "'Source Code Pro', 'Courier New', Courier, Consolas, Monaco, monospace"
+
+# 点击页面的烟花效果
+fireworks:
+  enable: true
+  colors:
+    - "102, 167, 221"
+    - "62, 131, 225"
+    - "33, 78, 194"
+
+# 随机多边形背景
+trianglify:
+  enable: false
+  cellSize: 75
+  width: 800
+  height: 600
+  palette: '["YlGnBu", "GnBu", "Purples", "Blues"]'
+  opacity: 0.5
+
+# ScrollReveal 首页卡片与文章内部图片的滚动浮现效果
+scrollreveal:
+  enable: true
+  targets:
+    - .post-card
+    - .markdown-body img
+
+# Cursor 光标  默认/链接/选择
+cursor:
+  enable: true
+  default: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/css/md-cursors/pointer.cur
+  pointer: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/css/md-cursors/link.cur
+  text: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/css/md-cursors/text.cur
+
 
 ##资源根目录 /source/####################################
 
@@ -26,9 +89,11 @@ categories:
 head:
   css:
     custom: /css/custom.css
+    fonts:
   js:
     base:
     async:
+      iconfont: //at.alicdn.com/t/font_1140697_dxory92pb0h.js
     defer:
 
 # 网站图标 svg
@@ -42,8 +107,8 @@ cdn:
   js:
     base:
     async:
-      # 默认引入的图标资源，使用 iconfont
-      # iconfont: 
+      # 默认引入iconfont图标
+      iconfont: //at.alicdn.com/t/font_1140697_dxory92pb0h.js
     defer:
 
 # 预加载
@@ -235,9 +300,6 @@ albums:
 
 girls:
   enable: false
-
-cursor:
-  enable: true
 
 baidu_push: true
 
