@@ -82,6 +82,9 @@ cursor:
   pointer: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/css/md-cursors/link.cur
   text: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/css/md-cursors/text.cur
 
+# 滚动
+smoothScroll: true
+
 
 ##资源根目录 /source/####################################
 
@@ -97,7 +100,7 @@ head:
     defer:
 
 # 批量引入.styl
-custom:
+#custom:
   # style: source/_data/style/*
 
 # 网站图标 svg
@@ -153,6 +156,7 @@ avatar:
 
 # 社交图标
 social:
+  # RSS 需安装 需配置config.yml
   - name: RSS
     # set rss in your root config
     # https://github.com/hexojs/hexo-generator-feed
@@ -179,10 +183,10 @@ menu:
     - type: tags
       path: /tags/
       icon: icon-price-tag-3-line
-  custom:
-    title:
-    path:
-    icon:
+  # custom:
+  #   title:
+  #   path:
+  #   icon:
 
 # 页面链接
 pages:
@@ -213,13 +217,18 @@ notice:
   enable: false
   content: Thanks.
 
-# 记录喜欢的女孩子们 需安装
+# 记录喜欢的女孩子们
 girls:
   enable: true
 
 # 相册 
 albums:
   enable: false
+
+# 标签云
+wordcloud:
+  enable: true
+  height: 350
 
 #随机在主页显示一句话
 say:
@@ -266,6 +275,12 @@ toc:
 post_edit:
   enable: false
   url: https://github.com/ASIjacket/asijacket.github.io/tree/hexo/source/
+
+# 字数时长统计 需安装
+wordcount:
+  enable: true
+  count: false
+  time: true
 
 # 代码一键复制按钮
 codeblock:
@@ -358,7 +373,7 @@ footer:
     enable: false
     prefix: 本博客已萌萌哒地运行
     suffix: (●'◡'●)
-    start_time: "2019-04-12T00:00:00"
+    start_time: "2020-02-01T00:00:00"
   #自定义文本 可以包含 HTML
   custom_text:
 
@@ -393,7 +408,7 @@ engine_search:
 
 # 本地搜索 需安装 需关闭引擎搜索
 local_search:
-  enable: true
+  enable: false
 
 # Algolia搜索 需安装
 algolia_search:
@@ -402,16 +417,23 @@ algolia_search:
 # 评论
 comment:
   enable: true
-  tips:
-    - 要不要和我说些什么？
+  #tips:
+    # - 要不要和我说些什么？
   # 候选评论系统  
   # candidates:
   #   - waline
 waline:
   enable: true
   serverURL: https://blog-comment-pi.vercel.app
-  # visitor: true
+  visitor: true
   # display comment count
-  comment: false
+  comment: true
+  emoji:
+    - https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/bilibili/
+    - https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/weibo/
+    - https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/qq/
+  locale:
+    placeholder: 填写邮箱，可以收到回复通知哦～
+  requiredMeta: ["nick"]
 
 
