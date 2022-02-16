@@ -425,6 +425,7 @@ comment:
 waline:
   enable: true
   serverURL: https://blog-comment-pi.vercel.app
+  # allow visitor comment
   visitor: true
   # display comment count
   comment: true
@@ -434,6 +435,13 @@ waline:
     - https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/qq/
   locale:
     placeholder: 填写邮箱，可以收到回复通知哦～
+  meta:
+    - nick
+    - mail
   requiredMeta: ["nick"]
+  recordIP: false
+  highlight: true
+
+
 
 
