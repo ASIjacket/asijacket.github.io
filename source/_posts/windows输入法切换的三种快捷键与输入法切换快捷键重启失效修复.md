@@ -1,5 +1,5 @@
 ---
-title: windows输入法切换的三种快捷键与输入法切换快捷键重启失效修复;
+title: windows输入法切换的三种快捷键与输入法切换快捷键重启失效修复
 email: hasrimollony@gmail.com
 toc: true
 comments: true
