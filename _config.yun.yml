@@ -12,7 +12,7 @@ colors:
 # 图片背景
 bg_image:
   enable: true
-  url: https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/bg/stars-timing-0-blur-30px.jpg
+  url: https://blog.kirakira.eu/img/bg/stars.jpg
   # 暗色模式背景图片
   # dark:
   # 设置背景模糊程度 建议原图处理
