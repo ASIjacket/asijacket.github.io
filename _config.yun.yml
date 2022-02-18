@@ -441,6 +441,7 @@ waline:
   requiredMeta: ["nick"]
   recordIP: false
   highlight: true
+  pageSize: 10
 
 
 
