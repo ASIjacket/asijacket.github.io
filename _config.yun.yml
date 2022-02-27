@@ -183,10 +183,10 @@ menu:
     - type: tags
       path: /tags/
       icon: icon-price-tag-3-line
-  # custom:
-  #   title: home
-  #   path: /
-  #   icon: icon-home-4-line
+  custom:
+   title: 
+   path: 
+   icon: 
 # 标签云（词云）
 wordcloud:
   enable: true
