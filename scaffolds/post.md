@@ -1,7 +1,7 @@
 ---
 title: {{ title }}
 icon:
-author: 
+author: LuckyStar
 email: hasrimollony@gmail.com
 
 sticky:   # 置顶权重
