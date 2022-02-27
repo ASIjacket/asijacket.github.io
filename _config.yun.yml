@@ -228,7 +228,7 @@ albums:
 # 标签云
 wordcloud:
   enable: true
-  height: 350
+  height: 300
 
 #随机在主页显示一句话
 say:
