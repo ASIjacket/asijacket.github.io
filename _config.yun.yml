@@ -184,9 +184,13 @@ menu:
       path: /tags/
       icon: icon-price-tag-3-line
   custom:
-    title:
-    path:
-    icon:
+    title: home
+    path: /
+    icon: icon-home-4-line
+# 标签云（词云）
+wordcloud:
+  enable: true
+  # height: 350
 
 # 页面链接
 pages:
