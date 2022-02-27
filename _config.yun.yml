@@ -187,11 +187,6 @@ menu:
     title: 
     path: 
     icon: icon-home-4-line
-    
-# 标签云（词云）
-wordcloud:
-  enable: true
-  # height: 350
 
 # 页面链接
 pages:
