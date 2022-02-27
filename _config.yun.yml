@@ -186,7 +186,7 @@ menu:
   custom:
     title: 
     path: 
-    icon: 
+    icon: icon-home-4-line
 # 标签云（词云）
 wordcloud:
   enable: true
