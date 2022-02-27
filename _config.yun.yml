@@ -12,9 +12,9 @@ colors:
 # 图片背景
 bg_image:
   enable: true
-  url: https://blog.kirakira.eu/img/bg/stars.jpg
+  url: /img/bg/stars.jpg
   # 暗色模式背景图片
-  # dark:
+  dark: /img/bg/stars2.png
   # 设置背景模糊程度 建议原图处理
   # blur: 30px 
   opacity: 0.8
