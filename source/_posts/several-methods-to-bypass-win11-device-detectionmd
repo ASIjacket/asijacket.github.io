@@ -1,0 +1,67 @@
+---
+title: centralized-method-to-bypass-windows-11-device-detection
+author: LuckyStar
+email: hasrimollony@gmail.com
+toc: true
+comments: true
+readmore: false
+hide: false
+aplayer: false
+hideTime: false
+tags:
+  - win11
+  - windows
+  - crack
+categories:
+  - 系统维护
+date: 2022-01-03 19:30:43
+updated: 2022-01-03 19:30:43
+icon:
+sticky:
+type:
+url:
+description:
+---
+
+win11 已经发布了有一段时间了，其新功能和新特征的文案已经被复制粘贴了无数次，总结就是 UI 动画果里果气，安卓 WSA 十分可用，资源管理器效率地下。
+
+
+
+目前首发版本已经趋于稳定，作为技术人，对新事物的好奇心终于是按耐不住了，决定尝试下 win11，用亲身经历劝退。但是马上就卡在了设备检测，直接拒绝安装。方法自然有很多，但很多文章的方法已经过时，就此记录下。
+
+<!-- more -->
+
+## 修改注册表
+
+需要在正在运行的系统或者 PE 上打开注册表
+
+`Win键　＋Ｒ　打开运行，输入　Regedit`
+
+
+
+找到路径　`HKEY_LOCAL_MACHINE\SYSTEM\Setup` ，
+
+
+
+在左侧文件夹 `右键 -> 新建 -> 项 `，命名为` LabConfig`
+
+
+
+右侧空白 ` 右键 -> 新建 -> DWORD ` 
+
+键分别为 `BypassTPMCheck` 和 `BypassSecureBootCheck`
+
+值都为 `1`
+
+
+
+即可正常安装
+
+## 使用开源工具
+
+在`https://github.com/coofcookie/Windows11Upgrade/releases` 直接下载
+
+运行后选择 win11 的镜像，选择语言，选择安装方式即可正常安装。
+
+
+
