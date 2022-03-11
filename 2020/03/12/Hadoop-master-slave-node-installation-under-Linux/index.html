@@ -1,0 +1,202 @@
+<!DOCTYPE html><html lang="zh-CN"><head><!-- hexo injector head_begin start --><link href="/css/hexo-tag-common.css" rel="stylesheet"/><!-- hexo injector head_begin end --><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#6200ee"><meta name="author" content=""><meta name="copyright" content=""><meta name="generator" content="Hexo 6.0.0"><meta name="theme" content="hexo-theme-yun"><title>Hadoop 主从节点 Linux 下的安装 | ✨Kirakira</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><script src="//at.alicdn.com/t/font_1140697_dxory92pb0h.js" async></script><script src="https://cdn.jsdelivr.net/npm/@unocss/runtime/mini.global.js"></script><script src="https://cdn.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+}
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><link rel="icon" type="image/svg+xml" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#6200ee"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"blog.kirakira.eu","root":"/","title":["Kirakira","Blog"],"version":"1.8.11","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.jsdelivr.net/gh/YunYouJun/cdn/img/avatar/none.jpg","fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]},"waline":{"config":{"enable":true,"serverURL":"https://blog-comment-pi.vercel.app","comment":true,"visitor":true,"emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/bilibili/","https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/weibo/","https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/qq/"],"locale":{"placeholder":"填写邮箱，可以收到回复通知哦～"},"meta":["nick","mail"],"requiredMeta":["nick"],"recordIP":false,"highlight":true,"pageSize":10,"el":"#waline","lang":"zh-CN"},"cdn":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","dark":"html.dark"},"vendors":{"darken":"https://cdn.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><link rel="alternate" href="/atom.xml" title="✨Kirakira" type="application/atom+xml"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/null"><script src="//at.alicdn.com/t/font_1140697_dxory92pb0h.js" async></script><link rel="preconnect" href="https://www.google-analytics.com" crossorigin><script async src="https://www.googletagmanager.com/gtag/js?id=G-EHWHX6L2NJ"></script><script>if (CONFIG.hostname === location.hostname) {
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-EHWHX6L2NJ');
+}</script><script>(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();</script><meta name="description" content="1.修改 user 获得 root 的放权2.关闭防火墙服务并禁用启动项CentOS 6 root su root exit sudo service iptables status sudo service iptables stop sudo chkconfig iptables off    查看所有启动项   可用提示功能 chkconfig --list    查看所有服务 serv">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hadoop 主从节点 Linux 下的安装">
+<meta property="og:url" content="https://blog.kirakira.eu/2020/03/12/Hadoop-master-slave-node-installation-under-Linux/index.html">
+<meta property="og:site_name" content="✨Kirakira">
+<meta property="og:description" content="1.修改 user 获得 root 的放权2.关闭防火墙服务并禁用启动项CentOS 6 root su root exit sudo service iptables status sudo service iptables stop sudo chkconfig iptables off    查看所有启动项   可用提示功能 chkconfig --list    查看所有服务 serv">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-12T15:41:46.000Z">
+<meta property="article:modified_time" content="2020-03-12T15:41:46.000Z">
+<meta property="article:tag" content="hadoop">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="centos">
+<meta name="twitter:card" content="summary"><script>(function() {
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script defer src="https://cdn.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-list-ordered"></use></svg></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-passport-line"></use></svg></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title=""><img width="96" loading="lazy" src="/img/head.jpeg" alt=""><span class="site-author-status" title="Looking">🌑</span></a><div class="site-author-name"><a href="/about/"></a></div><span class="site-name">✨Kirakira</span><sub class="site-subtitle"></sub><div class="site-desciption"></div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="我的主页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">7</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">3</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">26</span></a></div><a class="site-state-item hty-icon-button" href="/null"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rss-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://t.me/AIKETI" title="Telegram" target="_blank" style="color:#0088CC"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-telegram-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-contrast-2-line"></use></svg></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BF%AE%E6%94%B9-user-%E8%8E%B7%E5%BE%97-root-%E7%9A%84%E6%94%BE%E6%9D%83"><span class="toc-text">1.修改 user 获得 root 的放权</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%85%B3%E9%97%AD%E9%98%B2%E7%81%AB%E5%A2%99%E6%9C%8D%E5%8A%A1%E5%B9%B6%E7%A6%81%E7%94%A8%E5%90%AF%E5%8A%A8%E9%A1%B9"><span class="toc-text">2.关闭防火墙服务并禁用启动项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-text"></span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%AE%BE%E7%BD%AEIP"><span class="toc-text">3.设置IP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E6%9C%AC%E6%9C%BAip-%E7%AC%A6%E5%90%88-NAT-%E7%BD%91%E6%AE%B5"><span class="toc-text">修改本机ip 符合 NAT 网段</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E4%BF%AE%E6%94%B9-HOST-%E4%B8%BB%E6%9C%BA%E5%90%8D"><span class="toc-text">4.修改 HOST 主机名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E9%85%8D%E7%BD%AE-Host-%E6%96%87%E4%BB%B6"><span class="toc-text">5.配置 Host 文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E9%85%8D%E7%BD%AE%E5%85%AC%E7%A7%81%E9%92%A5"><span class="toc-text">6.配置公私钥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-JDK%E5%A4%8D%E5%88%B6%E5%B9%B6%E9%85%8D%E7%BD%AE-PATH"><span class="toc-text">7.JDK复制并配置 $PATH</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-Hadoop%E5%A4%8D%E5%88%B6%E5%B9%B6%E9%85%8D%E7%BD%AE-PATH"><span class="toc-text">8.Hadoop复制并配置$PATH</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E4%BF%AE%E6%94%B9Hadoop%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">9.修改Hadoop相关配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E5%88%86%E6%AD%A5%E5%90%AF%E5%8A%A8-%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F-%E4%B8%BB%E8%8A%82%E7%82%B9Hadoop"><span class="toc-text">10.分步启动 伪分布式 主节点Hadoop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E9%85%8D%E7%BD%AE%E5%88%86%E5%B8%83%E5%BC%8F-%E4%BB%8E%E8%8A%82%E7%82%B9-Hadoop"><span class="toc-text">11.配置分布式 从节点 Hadoop</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#6200ee;"><link itemprop="mainEntityOfPage" href="https://blog.kirakira.eu/2020/03/12/Hadoop-master-slave-node-installation-under-Linux/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content=""><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="✨Kirakira"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Hadoop 主从节点 Linux 下的安装</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-calendar-line"></use></svg></span> <time title="创建时间：2020-03-12 23:41:46" itemprop="dateCreated datePublished" datetime="2020-03-12T23:41:46+08:00">2020-03-12</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="阅读时长"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-timer-line"></use></svg></span> <span title="阅读时长">2m</span></span></span><span class="leancloud_visitors" id="/2020/03/12/Hadoop-master-slave-node-installation-under-Linux/" data-flag-title="Hadoop 主从节点 Linux 下的安装"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-eye-line"></use></svg> <span class="leancloud-visitors-count"></span></span></span><span class="post-meta-divider">-</span><a href="#comment"><span class="post-meta-item-icon" title="评论数"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-chat-3-line"></use></svg> <span class="waline-comment-count" id="/2020/03/12/Hadoop-master-slave-node-installation-under-Linux/"></span></span></a><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-line"></use></svg></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E9%80%9A%E7%94%A8%E7%BC%96%E7%A8%8B/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">通用编程</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/hadoop/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">hadoop</span></a><a class="tag-item" href="/tags/linux/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">linux</span></a><a class="tag-item" href="/tags/centos/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="tag-name">centos</span></a></span></div><div class="post-author"><div class="author-avatar"><img src="https://www.gravatar.com/avatar/8fa867fb73a9376d1bb220360cdfbce0?s=20&amp;d=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FYunYouJun%2Fcdn%2Fimg%2Favatar%2Fnone.jpg"></div><span class="author-name">LuckyStar</span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><span id="more"></span>
+
+<h2 id="1-修改-user-获得-root-的放权"><a href="#1-修改-user-获得-root-的放权" class="headerlink" title="1.修改 user 获得 root 的放权"></a>1.修改 user 获得 root 的放权</h2><h2 id="2-关闭防火墙服务并禁用启动项"><a href="#2-关闭防火墙服务并禁用启动项" class="headerlink" title="2.关闭防火墙服务并禁用启动项"></a>2.关闭防火墙服务并禁用启动项</h2><p>CentOS 6 root</p>
+<pre class="language-none"><code class="language-none">su root exit
+sudo service iptables status
+sudo service iptables stop
+sudo chkconfig iptables off</code></pre>
+
+
+
+<p>查看所有启动项   可用提示功能</p>
+<pre class="language-none"><code class="language-none">chkconfig --list</code></pre>
+
+
+
+<p>查看所有服务</p>
+<pre class="language-none"><code class="language-none">service --status-all</code></pre>
+
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="3-设置IP"><a href="#3-设置IP" class="headerlink" title="3.设置IP"></a>3.设置IP</h2><h3 id="修改本机ip-符合-NAT-网段"><a href="#修改本机ip-符合-NAT-网段" class="headerlink" title="修改本机ip 符合 NAT 网段"></a>修改本机ip 符合 NAT 网段</h3><p>1.修改文件</p>
+<p>2.使用图形设置</p>
+<pre class="language-none"><code class="language-none">IP Address    NAT 设置 IP 起始往后
+
+NetMask       NAT 同
+Gateway       NAT 中     NAT 设置中     网关 IP
+DNS           8.8.8.8    223.6.6.6</code></pre>
+
+
+
+<h2 id="4-修改-HOST-主机名"><a href="#4-修改-HOST-主机名" class="headerlink" title="4.修改 HOST 主机名"></a>4.修改 HOST 主机名</h2><pre class="language-none"><code class="language-none">sudo vim &#x2F;etc&#x2F;sysconfig&#x2F;network</code></pre>
+
+<p>更改HOSTNAME   重启后生效</p>
+<h2 id="5-配置-Host-文件"><a href="#5-配置-Host-文件" class="headerlink" title="5.配置 Host 文件"></a>5.配置 Host 文件</h2><pre class="language-none"><code class="language-none">sudo vim &#x2F;etc&#x2F;hosts</code></pre>
+
+<p>添加自身在内的所有节点host及对应ip</p>
+<h2 id="6-配置公私钥"><a href="#6-配置公私钥" class="headerlink" title="6.配置公私钥"></a>6.配置公私钥</h2><pre class="language-none"><code class="language-none">cd ~&#x2F;.ssh&#x2F;
+
+# 添加密钥
+ssh-keygen -t rsa    </code></pre>
+
+
+
+<p>远程终端上</p>
+<pre class="language-none"><code class="language-none"># 公钥复制到远程终端并写入
+cat id_rsa.pub &gt;&gt; authorized_keys   
+chmod 600 authorized_keys
+chmod 700 ~&#x2F;.ssh
+SSH HOSTNAME或IP即可</code></pre>
+
+
+
+<h2 id="7-JDK复制并配置-PATH"><a href="#7-JDK复制并配置-PATH" class="headerlink" title="7.JDK复制并配置 $PATH"></a>7.JDK复制并配置 $PATH</h2><pre class="language-none"><code class="language-none"># 复制并定位到用户目录桌面下
+cd ~&#x2F;desktop
+mkdir java
+mv ~&#x2F;Desktop&#x2F;A.tar .&#x2F;java&#x2F;
+
+tar zxvf A.tar
+vim ~&#x2F;.bashrc     
+
+# 设置 PATH 加入
+export JAVA_HOME&#x3D;&#x2F;home&#x2F;USERNAME&#x2F;BIN&#x2F;jdk
+export PATH&#x3D;$&#123;JAVA_HOME&#125;&#x2F;bin:$PATH
+
+# 生效
+source ~&#x2F;.bashrc     
+
+echo $PATH</code></pre>
+
+
+
+<h2 id="8-Hadoop复制并配置-PATH"><a href="#8-Hadoop复制并配置-PATH" class="headerlink" title="8.Hadoop复制并配置$PATH"></a>8.Hadoop复制并配置$PATH</h2><pre class="language-none"><code class="language-none"># 复制到目录 并 解压
+vim ~&#x2F;.bashrc    
+
+# 设置 PATH 加入
+export HADOOP_HOME&#x3D;&#x2F;home&#x2F;USERNAME&#x2F;BIN&#x2F;hadoop
+export PATH&#x3D;$&#123;HADOOP_HOME&#125;&#x2F;bin:$&#123;HADOOP_HOME&#125;&#x2F;sbin:$PATH
+
+# 生效
+source ~&#x2F;.bashrc</code></pre>
+
+
+
+<h2 id="9-修改Hadoop相关配置文件"><a href="#9-修改Hadoop相关配置文件" class="headerlink" title="9.修改Hadoop相关配置文件"></a>9.修改Hadoop相关配置文件</h2><pre class="language-none"><code class="language-none"># 配置文件路径
+*&#x2F;hadoop&#x2F;etc&#x2F;hadoop&#x2F;
+
+# 修改文件
+hadoop-env.sh  #25
+
+# 修改JAVA_HOME目录
+yarn-env.sh   #
+yarn-site.xml
+core-site.xml
+hdfs-site.xml
+mapred-site.xml</code></pre>
+
+
+
+<h2 id="10-分步启动-伪分布式-主节点Hadoop"><a href="#10-分步启动-伪分布式-主节点Hadoop" class="headerlink" title="10.分步启动 伪分布式 主节点Hadoop"></a>10.分步启动 伪分布式 主节点Hadoop</h2><p>格式化文件系统</p>
+<pre class="language-none"><code class="language-none">hadoop namemode -format</code></pre>
+
+
+
+<p>启动HDFS的命令 datanode</p>
+<pre class="language-none"><code class="language-none">start-dfs.sh</code></pre>
+
+
+
+<p>启动yarn</p>
+<pre class="language-none"><code class="language-none">start-yarn.sh</code></pre>
+
+
+
+<p>验证启动</p>
+<pre class="language-none"><code class="language-none">jsp
+​    namenode
+​    datanode
+​    secondaryNameNode
+​    ResouceManger</code></pre>
+
+
+
+<p>单独启动&#x2F;停止某一个进程 如 namenode、yarn的进程</p>
+<pre class="language-none"><code class="language-none">hadoop-daemon.sh start namenode</code></pre>
+
+
+
+<h2 id="11-配置分布式-从节点-Hadoop"><a href="#11-配置分布式-从节点-Hadoop" class="headerlink" title="11.配置分布式 从节点 Hadoop"></a>11.配置分布式 从节点 Hadoop</h2><p>关机 并复制主节点 </p>
+<pre class="language-none"><code class="language-none">halt</code></pre>
+
+
+
+<p>修改 HOST 主机名</p>
+<pre class="language-none"><code class="language-none">sudo vim &#x2F;etc&#x2F;sysconfig&#x2F;network</code></pre>
+
+
+
+<p>删掉node2 公私钥 创建新密钥</p>
+<pre class="language-none"><code class="language-none">cd ~&#x2F;.ssh
+rm id_rsa.pub
+rm authorized_keys
+ssh-keygen -t rsa [path]</code></pre>
+
+
+
+<p>修改authorized_keys</p>
+<p>在node2 的 authorized_keys 添加 node1公钥</p>
+<p>复制 公钥和的 authorized_keys 到 node1</p>
+<p>相反亦可</p>
+<p>并测试SSH</p>
+<pre class="language-none"><code class="language-none">cat .&#x2F;id_dsa.pub &gt;&gt; ~&#x2F;.ssh&#x2F;authorized_keys
+scp root@A0:&#x2F;home&#x2F;a&#x2F;.ssh&#x2F;id_dsa.pub .&#x2F;id-dsa.pub.A0
+cat id-dsa.pub.A0 &gt;&gt; authorized_keys
+scp .&#x2F;authorized_keys root@A0:&#x2F;home&#x2F;a&#x2F;.ssh&#x2F;authorized_keys
+
+ssh A0
+exit
+ssh A1
+exit</code></pre>
+
+</div></section><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>LuckyStar</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://blog.kirakira.eu/2020/03/12/Hadoop-master-slave-node-installation-under-Linux/" title="Hadoop 主从节点 Linux 下的安装">https://blog.kirakira.eu/2020/03/12/Hadoop-master-slave-node-installation-under-Linux/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><svg class="icon"><use xlink:href="#icon-creative-commons-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-by-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-nc-line"></use></svg><svg class="icon"><use xlink:href="#icon-creative-commons-sa-line"></use></svg></a> 许可协议。</li></ul></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2020/11/21/Front-end-framework-FAQ/" rel="prev" title="前端框架常见开发问题 FAQ"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-left-s-line"></use></svg><span class="post-nav-text">前端框架常见开发问题 FAQ</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/2020/03/10/vuex-and-front-end-login-interceptor/" rel="next" title="Vuex 与 前端登录拦截器"><span class="post-nav-text">Vuex 与 前端登录拦截器</span><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-right-s-line"></use></svg></a></div></div></div><div class="hty-card" id="comment"><div id="waline"></div><script>window.CONFIG.waline.config.path = "/2020/03/12/Hadoop-master-slave-node-installation-under-Linux/"</script><div class="js-Pjax"><script src="/js/comments/waline.js" type="module" defer></script></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2020 – 2022 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> </span></div></footer><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-arrow-up-s-line"></use></svg><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#6200ee" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" target="_blank" rel="noopener" href="https://www.google.com/search?q=site:blog.kirakira.eu" title="搜索"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-search-line"></use></svg></span></a></div><!-- hexo injector body_end start --><script src="/js/hexo-tag-common.js"></script><!-- hexo injector body_end end --></body></html>
