@@ -145,7 +145,7 @@ sidebar:
 
 # 头像
 avatar:
-  url: /images/avatar.jpg
+  url: /img/head.jpeg
   rounded: true
   opacity: 1
   mickey_mouse: false
