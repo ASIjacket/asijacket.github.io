@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2022/12/07/hello-world/"/>
+      <url>/2022/12/07/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span></code></pre><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo server</code></pre><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo generate</code></pre><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="language-bash" data-language="bash"><code class="language-bash">$ hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Evernote 迁移 Notion 记录</title>
+      <link href="/2022/06/10/Evernote2Notion/"/>
+      <url>/2022/06/10/Evernote2Notion/</url>
+      
+        <content type="html"><![CDATA[<p>Evernote 迁移 Notion 的记录和随笔</p><span id="more"></span><h2 id="笔记软件的选择"><a href="#笔记软件的选择" class="headerlink" title="笔记软件的选择"></a>笔记软件的选择</h2><p>笔记软件一般都有很强的用户忠诚度，一旦用户开始记录他们的资料，笔记软件就开始积累用户的时间资本，让用户更换笔记软件的同时付出更高的成本。</p><p>因此笔记软件最初的选择应慎之又慎。</p><p>笔记软件的选择标准我总结为三点</p><ul><li><p>完善的导出功能</p></li><li><p>便捷的历史版本管理</p></li><li><p>不错的书写体验</p></li></ul><p>对于第一点常见的国产大厂软件都可以Pass了，基本堵死了正常导出的途径，只能通过一些旁门左道不完美的实现笔记的导出，入了这些坑，或许有一天你的笔记不再是你的。</p><p>其余两点在现在的 2022 年，基本都可以做到令人差强人意的程度，或许都已经达到了能用的程度。</p><h2 id="Why-Notion"><a href="#Why-Notion" class="headerlink" title="Why Notion"></a>Why Notion</h2><p>经济基础决定上层建筑，money决定屁股。Notion 目前在某宝可以以很低的价格拿到几十年的专业版预付费，这些是源于 Notion 的小公司支持计划，之前封锁了一批滥用之后，现在已经比较安全了。对比 Evernote，最后一批羊毛账号售寝之后价格水涨船高，已经有了充足的动机跳车。</p><p>此外 Notion 的设计理念确实标新立异，以至于模仿者雨后春笋，总有写 Youtuber 教大家使用 Notion，在我看来毫无必要花费时间去学习别人的用法，一个好的软件会引导用户发现他们的闪光点。</p><p>事不宜迟，逃离 Evernote。</p><h2 id="所需工具"><a href="#所需工具" class="headerlink" title="所需工具"></a>所需工具</h2><p>Evernote-backup</p><p><a href="https://github.com/vzhd1701/evernote-backup">https://github.com/vzhd1701/evernote-backup</a></p><p>Enex2notion</p><p><a href="https://github.com/vzhd1701/enex2notion">https://github.com/vzhd1701/enex2notion</a></p><h2 id="迁移步骤"><a href="#迁移步骤" class="headerlink" title="迁移步骤"></a>迁移步骤</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre class="language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> evernote-backuppip <span class="token function">install</span> enex2notion</code></pre><h3 id="创建-Evernote-数据库-并同步"><a href="#创建-Evernote-数据库-并同步" class="headerlink" title="创建 Evernote 数据库 并同步"></a>创建 Evernote 数据库 并同步</h3><p>这里会提示登陆</p><pre class="language-bash" data-language="bash"><code class="language-bash">evernote-backup init-dbevernote-backup <span class="token function">sync</span></code></pre><h3 id="导出数据库到-enex-文件"><a href="#导出数据库到-enex-文件" class="headerlink" title="导出数据库到 enex 文件"></a>导出数据库到 enex 文件</h3><pre class="language-bash" data-language="bash"><code class="language-bash">evernote-backup <span class="token builtin class-name">export</span> ./o</code></pre><h3 id="迁移到-Notion"><a href="#迁移到-Notion" class="headerlink" title="迁移到 Notion"></a>迁移到 Notion</h3><pre class="language-bash" data-language="bash"><code class="language-bash">enex2notion <span class="token parameter variable">--token</span> *token_v2* <span class="token parameter variable">--verbose</span> <span class="token parameter variable">--mode</span> PAGE --add-meta --mode-webclips TXT <span class="token parameter variable">--log</span> ./log --done-file ./finish --root-page EverNote ./o</code></pre><h3 id="enex2notion-参数"><a href="#enex2notion-参数" class="headerlink" title="enex2notion 参数"></a>enex2notion 参数</h3><table><thead><tr><th>token_v2</th><th>在网页版 Notion Cookie 中复制对应字段</th></tr></thead><tbody><tr><td>mode</td><td>导出模式 page 即正常的笔记</td></tr><tr><td>add-meta</td><td>添加tab 日期</td></tr><tr><td>mode-webclips</td><td>将剪藏转换TXT或PDF类型</td></tr><tr><td>done-file</td><td>记录已完成上传文件的 hash 实现断点续传</td></tr><tr><td>root-page</td><td>Notion 中保存位置</td></tr></tbody></table>]]></content>
+      
+      
+      <categories>
+          
+          <category> 系统维护 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Notion </tag>
+            
+            <tag> Evernote </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>windows输入法切换的三种快捷键 与 输入法切换快捷键重启失效修复</title>
+      <link href="/2021/10/02/input-method-shortcuts-and-fixes/"/>
+      <url>/2021/10/02/input-method-shortcuts-and-fixes/</url>
+      
+        <content type="html"><![CDATA[<p>本文探究一种更优雅的方式在多个输入法间切换，以及输入法快捷键设置在重启后失效的原因分析与修复。</p><span id="more"></span><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>有一些场景需要在多个语言和输入法中高频切换，比如写代码时需要中英文输入法切换，又或是打游戏时操作之余在聊天小窗对线，有时找资源时也需要在中英日输入法间轮番切换。</p><p>由于中文输入法本身就有中英文切换的缘故，经常会遇到 切换到中文输入法 -&gt; 打出英文 -&gt; 切到英文 -&gt; 又切换到中文 Alt+Shift 如此循环切换。个人在码代码时中文输入法的中英文切换键经常会在输入特殊字符时误触，并且还有全角标点的问题。</p><p>又或是习惯纯英文输入法输入，又或是像我一样装了很多的输入法，由此迫切需要一个更优雅的切换方式解决这个痛点。</p><h2 id="三种类型的输入法快捷键"><a href="#三种类型的输入法快捷键" class="headerlink" title="三种类型的输入法快捷键"></a>三种类型的输入法快捷键</h2><h3 id="首先找到输入法快捷键设置"><a href="#首先找到输入法快捷键设置" class="headerlink" title="首先找到输入法快捷键设置"></a>首先找到输入法快捷键设置</h3><p>win10更新后，巨硬逐渐在淡化控制面板的入口，所以重新学习下新的设置入口。</p><p>$$<br>windows系统设置(win+I) → 时间和语言设置 → 高级键盘设置 → 语言栏选项 → 高级键设置<br>$$</p><h3 id="输入法间切换"><a href="#输入法间切换" class="headerlink" title="输入法间切换"></a>输入法间切换</h3><p>这个是最常用的，默认是 Alt + Shift</p><h3 id="输入语言间切换"><a href="#输入语言间切换" class="headerlink" title="输入语言间切换"></a>输入语言间切换</h3><p>默认 win + 空格</p><p>比如我有中英日三种语言的输入法，中文和日文输入法还装了两个，这个切换就会比较方便。</p><p>另外会有一个窗口展示所有输入法并高亮正在使用的一个，十分直观。</p><h3 id="切换到某一个输入法"><a href="#切换到某一个输入法" class="headerlink" title="切换到某一个输入法"></a>切换到某一个输入法</h3><p>这也是我主要使用的一个，使用快捷键精准切换到某个输入法，相对于循环轮询，这种方式更为确定，给予十足的安全感，就像 iPhone 的静音键的设计，简单、直观、明确。</p><p>比较推荐使用 Alt+Shift+数字键 组合的方式，方便记忆，快速上手，并且比较符合人体工学。</p><h2 id="修复输入法快捷键"><a href="#修复输入法快捷键" class="headerlink" title="修复输入法快捷键"></a>修复输入法快捷键</h2><p>由于巨硬优秀的代码设计，某一天突然给了我一个惊喜。我的切换到某个输入法切换的快捷键，重启后就会重置回默认状态。根据以往经验，推测是注册表的键值被不明原因覆盖，那首先需要找到这个设置的注册表键值。使用全局搜索大法，快捷键数据保存在某一个用户文件夹下，由此推断每个用户单独保存一份快捷键，也确实是这样。那么重启后消失的快捷键数据是哪里来的呢？</p><p>计算机\HKEY_USERS\ 下保存了所有用户的文件夹， 经过实验替换掉 .DEFAULT 的数据后，重启后快捷键数据就不再丢失，并且也是复制于 .DEFAULT 的。由此可以得到结论，由于不明原因，每次重启后用户输入法快捷键数据会被默认数据覆盖。</p><p>至于不明原因是什么，搜索微软官方论坛可以发现这个 bug 存在于 win 系系统很多年了，至今也没有修复。恐怕官方没有引起重视或者在推进替换该项功能。毕竟这个入口已经是越来越深了。</p><p>致病原因已经明确，修复就十分简单了。</p><h3 id="设置好你的快捷键"><a href="#设置好你的快捷键" class="headerlink" title="设置好你的快捷键"></a>设置好你的快捷键</h3><p>根据上文找到 语言栏选项， 设置好快捷键。 </p><h3 id="找到注册表对应键值"><a href="#找到注册表对应键值" class="headerlink" title="找到注册表对应键值"></a>找到注册表对应键值</h3><h4 id="打开注册表"><a href="#打开注册表" class="headerlink" title="打开注册表"></a>打开注册表</h4><p>首先 win+R 输入 regedit </p><h4 id="确定当前用户的-SID"><a href="#确定当前用户的-SID" class="headerlink" title="确定当前用户的 SID"></a>确定当前用户的 SID</h4><p>地址栏输入路径</p><p><code>计算机\HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\hivelist</code></p><p>在右侧的数据列，寻找包含当前登录用户名的路径字符串，其对应名称列会有类似 \REGISTRY\USER\XXXX 的一个键，这里的 XXXX 就是需要的 SID</p><h4 id="将当前用户和默认用户-快捷键注册表配置导出"><a href="#将当前用户和默认用户-快捷键注册表配置导出" class="headerlink" title="将当前用户和默认用户 快捷键注册表配置导出"></a>将当前用户和默认用户 快捷键注册表配置导出</h4><p>使用刚才的 SID 补全路径并输入到地址栏</p><p><code>计算机\HKEY_USERS\YOURSID\Control Panel\Input Method\Hot Keys</code></p><p>右键左侧选中的 Hot Keys 文件夹，命名为 1，导出到桌面。</p><p><code>计算机\HKEY_USERS\.DEFAULT\Control Panel\Input Method\Hot Keys</code></p><p>右键左侧选中的 Hot Keys 文件夹，命名为 2，导出到桌面。</p><h4 id="修改注册表文件"><a href="#修改注册表文件" class="headerlink" title="修改注册表文件"></a>修改注册表文件</h4><p>右键 1 文件，打开方式，选一个可以批量替换的编辑器。</p><p>将刚才获得的 SID 批量替换为 .DEFAULT 并保存。</p><p>双击 1 文件导入配置。</p><p>重启检查是否正常。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 系统维护 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> windows </tag>
+            
+            <tag> 输入法 </tag>
+            
+            <tag> 快捷键 </tag>
+            
+            <tag> win10 </tag>
+            
+            <tag> win11 </tag>
+            
+            <tag> regedit </tag>
+            
+            <tag> 注册表 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>2021-动画番剧正确观看指南</title>
+      <link href="/2021/06/11/animation-viewing-guide/"/>
+      <url>/2021/06/11/animation-viewing-guide/</url>
+      
+        <content type="html"><![CDATA[<p>在2021年中期这个时间点，汇总梳理目前比较良好的看番方式，包括不限于当季新番、剧场版动画、无修正的旧番BD、独立企划OVA等。</p><span id="more"></span><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>2021年后先审后播正式落户b站，让原本的删减新番进一步加速为删减旧番，大会员仅剩的价值也进一步压缩，仅仅几年的版权时代可以说就此落幕了。</p><p>纵观若干年前，在b站看无版权的投稿新番也只是选择之一，当然现在仍有很多更好的方法和思路，希望本文可以给你带来一些新的思路。也欢迎评论区交流你的方法，毕竟时代总是在进步，方法一直是推陈出新的。</p><h2 id="汇总"><a href="#汇总" class="headerlink" title="汇总"></a>汇总</h2><p>先上汇总表</p><table><thead><tr><th>途径</th><th>使用限制</th><th>删减</th><th>新番数量</th><th>旧番数量</th><th>剧场版</th><th>会员</th><th>画质</th></tr></thead><tbody><tr><td>Bilibili港澳台</td><td>脚本破解&#x2F;指定区域梯子</td><td>部分有删减</td><td>较多</td><td>较多</td><td>较少</td><td>独家需会员</td><td>好</td></tr><tr><td>Bilibili东南亚</td><td>脚本破解&#x2F;指定区域梯子</td><td>&#x2F;</td><td>较多</td><td>一般</td><td>较少</td><td>&#x2F;</td><td>好</td></tr><tr><td>Telegram频道</td><td>梯子</td><td>&#x2F;</td><td>全</td><td>20年前较分散</td><td>近年全</td><td>&#x2F;</td><td>好</td></tr><tr><td>樱花动漫等</td><td>&#x2F;</td><td>&#x2F;</td><td>较多</td><td>较多</td><td>较多</td><td>&#x2F;</td><td>一般</td></tr><tr><td>BT&#x2F;离线&#x2F;网盘</td><td>&#x2F;</td><td>国内产品存在和谐</td><td>全</td><td>全</td><td>全</td><td>部分收费</td><td>好</td></tr><tr><td>自建站点</td><td>&#x2F;</td><td>&#x2F;</td><td>全</td><td>全</td><td>全</td><td>服务器费用</td><td>好</td></tr><tr><td>Emby</td><td>部分公益服需要梯子</td><td>&#x2F;</td><td>较多</td><td>一般</td><td>较少</td><td>&#x2F;</td><td>好</td></tr><tr><td>巴哈姆特</td><td>梯子</td><td>&#x2F;</td><td>较多</td><td>较多</td><td>较多</td><td>高清需付费</td><td>好</td></tr><tr><td>Netflix Amazon Youtube</td><td>梯子</td><td>&#x2F;</td><td>较多</td><td>较多</td><td>较多</td><td>必须</td><td>好</td></tr></tbody></table><h2 id="评析"><a href="#评析" class="headerlink" title="评析"></a>评析</h2><h3 id="Bilibili"><a href="#Bilibili" class="headerlink" title="Bilibili"></a>Bilibili</h3><p>Bilibili港澳台目前可以通过脚本和一些魔改app解锁，但是会解析为香港地区的服务器，北方用户播放会比较卡，或者你也可以直接挂梯子，播放体验会好很多。</p><p>新番片源也比较多，虽然偶尔会有删减下架(比如 无职转生，转生暗杀者)，但是相对国内体验实打实的迫真倒退十年，毕竟可以看无删减巨人。旧番陆陆续续添置了不少，目前热门那些也比较全了，而且仅独家番剧需要大会员。</p><p>Bilibili东南亚是叔叔出海产品，账号APP都和国内独立，需要东南亚梯子。新番基本都有，码率看齐国外大厂，体积平均一集1g左右，片源很优秀可以通过telegram观看，后面会介绍。目前逐渐加入会员体系。</p><h3 id="Telegram频道"><a href="#Telegram频道" class="headerlink" title="Telegram频道"></a>Telegram频道</h3><p>如果你有稳定的梯子我十分推荐Bilibili港澳台和Telegram频道的资源配合使用，基本可以覆盖所有的新番。Telegram上有很多频道使用机器人抓取新番的BT种子、巴哈姆特等片源上传到Telegram上，直接可以在线观看。推荐的频道有 <a href="https://t.me/AnimeNep">NEP.Anime</a>  <a href="https://t.me/NC_Raws_Channel">NC-Raws</a> , 进入频道后点击索引的置顶消息，再点击 # 开头的标签即可定位到新番。</p><h3 id="Emby"><a href="#Emby" class="headerlink" title="Emby"></a>Emby</h3><p>Emby 是一个媒体资源的解决方案，可以将影视资源集中存储在服务端，并做好索引，用户只需要链接到服务端即可观看影视。</p><p>其优势就是将本地资源整合成类似 Netflix 的流媒体服务，并且在电视这类大屏设备上体验相对较好，打开电视直接播放漫威的电影不要太方便。具体介绍可以看之前的文章。</p><p>对于普通用户，现在有很多公益服节点可以免费使用，他们提供了很多国内外的影视资源，但因为多是人工维护的，所以新番更新并不会像 Telegram 频道机器抓取那样及时。每个节点公益服资源也是参差不齐的，如果找到比较合适的。</p><p>但是如果你主要使用手机电脑，那 Emby 相对没有太大优势。</p><h3 id="Netflix-等流媒体"><a href="#Netflix-等流媒体" class="headerlink" title="Netflix 等流媒体"></a>Netflix 等流媒体</h3><p>这些其实没啥好说的，已经用的人也不会来看这篇文章，没用过的大概率也会被劝退。</p><p>需要注意的就是，有些版权只在日本国内才有，并不是所有的都是全球授权。</p><p>另外 Youtube 上有很多剧场版动画点播，而且还有分清晰度付费的骚操作，基本BD发售以后有，很多流媒体估计无法接受这种方式，都没有版权。当然其实这类点播不久之前还是很常见的。</p><h3 id="自建离线下载"><a href="#自建离线下载" class="headerlink" title="自建离线下载"></a>自建离线下载</h3><p>相比于直接本地直接挂 BT 下载，优势显而易见。</p><p>大部分宽带没有独立 IP，出国流量缓慢，加上国内 P2P 环境比较恶劣，不太热门的资源速度很不理想，甚至无法下载。</p><p>在服务器上离线下载，基本可以实现国内网盘的功能，随时下载，在线播放，没有资源被删的忧虑。在 BD 刚刚发售的时候想尽早给群友剧透，下载一些不可描述的资源等等，总能派上用途。</p><p>在线观看，建议搭建一个 Web 文件管理网站，不需要 SSL 证书，直接 http 连接，电脑就可以直接在线观看或者下载了，移动端推荐 nplayer 也是使用网页挂载的方式。</p><p>这里特别使用 http 网站， 当然 nplayer 等软件也是可以使用 FTP 的，但是那样直连速度会慢很多，直连有时会被限制在 10 兆以内，究其原因可能还是对加密流量的限速。</p><p>实际的部署调试可以看之前的文章。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> ACGN </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 动画 </tag>
+            
+            <tag> 番剧 </tag>
+            
+            <tag> OVA </tag>
+            
+            <tag> 剧场版 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>前端框架常见开发问题 FAQ</title>
+      <link href="/2020/11/21/Front-end-framework-FAQ/"/>
+      <url>/2020/11/21/Front-end-framework-FAQ/</url>
+      
+        <content type="html"><![CDATA[<span id="more"></span><h1 id="前端设计注意"><a href="#前端设计注意" class="headerlink" title="前端设计注意"></a>前端设计注意</h1><ul><li><h3 id="class单元拆分公共部分"><a href="#class单元拆分公共部分" class="headerlink" title="class单元拆分公共部分"></a>class单元拆分公共部分</h3></li><li><h3 id="margin-padding不应使用百分比-使用数字使用calc减去对应值"><a href="#margin-padding不应使用百分比-使用数字使用calc减去对应值" class="headerlink" title="margin padding不应使用百分比 使用数字使用calc减去对应值"></a>margin padding不应使用百分比 使用数字使用calc减去对应值</h3></li><li><h3 id="vue-组件应该尽量拆分"><a href="#vue-组件应该尽量拆分" class="headerlink" title="vue 组件应该尽量拆分"></a>vue 组件应该尽量拆分</h3></li></ul><h1 id="Box-定位"><a href="#Box-定位" class="headerlink" title="Box 定位"></a>Box 定位</h1><h2 id="div-垂直居中"><a href="#div-垂直居中" class="headerlink" title="div 垂直居中"></a>div 垂直居中</h2><pre class="language-none"><code class="language-none">display:flex;&#x2F;*Flex布局*&#x2F;display: -webkit-flex; &#x2F;* Safari *&#x2F;align-items:center;&#x2F;*指定垂直居中*&#x2F;</code></pre><h2 id="div水平居中"><a href="#div水平居中" class="headerlink" title="div水平居中"></a>div水平居中</h2><pre class="language-none"><code class="language-none"># 内div固定宽度 Flex.out&#123;​    width: 300px;​    height: 300px;​    display: flex;​    display: -webkit-flex;​    justify-content: center;​    align-items: center;&#125;.out .in&#123;​    width: 100px;​    height: 100px;&#125;</code></pre><h2 id="固定行宽-溢出隐藏"><a href="#固定行宽-溢出隐藏" class="headerlink" title="固定行宽 溢出隐藏"></a>固定行宽 溢出隐藏</h2><pre class="language-none"><code class="language-none">&#123;width: calc(100% - 150px);overflow: hidden;height: 16px;display: inline-block;white-space: nowrap;text-overflow: ellipsis;&#125;</code></pre><h1 id="边框"><a href="#边框" class="headerlink" title="边框"></a>边框</h1><h2 id="border-避免未设置类型而不显示"><a href="#border-避免未设置类型而不显示" class="headerlink" title="border 避免未设置类型而不显示"></a>border 避免未设置类型而不显示</h2><pre class="language-none"><code class="language-none">border-right:1px solid #F00;</code></pre><h2 id="border的设置属性"><a href="#border的设置属性" class="headerlink" title="border的设置属性"></a>border的设置属性</h2><table><thead><tr><th>none</th><th>定义无边框。</th></tr></thead><tbody><tr><td>hidden</td><td>与 “none” 相同。不过应用于表时除外，对于表，hidden 用于解决边框冲突。</td></tr><tr><td>dotted</td><td>定义点状边框。在大多数浏览器中呈现为实线。</td></tr><tr><td>dashed</td><td>定义虚线。在大多数浏览器中呈现为实线。</td></tr><tr><td>solid</td><td>定义实线。</td></tr><tr><td>double</td><td>定义双线。双线的宽度等于 border-width 的值。</td></tr><tr><td>groove</td><td>定义 3D 凹槽边框。其效果取决于 border-color 的值。</td></tr><tr><td>ridge</td><td>定义 3D 垄状边框。其效果取决于 border-color 的值。</td></tr><tr><td>inset</td><td>定义 3D inset 边框。其效果取决于 border-color 的值。</td></tr><tr><td>outset</td><td>定义 3D outset 边框。其效果取决于 border-color 的值。</td></tr><tr><td>inherit</td><td>规定应该从父元素继承边框样式。</td></tr></tbody></table><h2 id="box对齐"><a href="#box对齐" class="headerlink" title="box对齐"></a>box对齐</h2><ul><li><p>margin 外盒 影响对齐</p></li><li><p>padding 内盒 不影响border </p></li><li><p>设置为 box-sizing: border-box;</p></li></ul><h2 id="使用-JavaScript-函数添加-CSS-样式"><a href="#使用-JavaScript-函数添加-CSS-样式" class="headerlink" title="使用 JavaScript 函数添加 CSS 样式"></a>使用 JavaScript 函数添加 CSS 样式</h2><ul><li><p>使用变量 + 函数 + addEventListenerd 改变样式变量</p></li><li><p>使用函数 + addEventListener 直接return Style-String</p></li></ul><p>​    </p><h2 id="vue"><a href="#vue" class="headerlink" title="vue"></a>vue</h2><h3 id="Vue滚动条插件"><a href="#Vue滚动条插件" class="headerlink" title="Vue滚动条插件"></a>Vue滚动条插件</h3><p>vue-custom-scrollbar</p><pre class="language-none"><code class="language-none">npm install vue-custom-scrollbar</code></pre><h3 id="CSS-sprite-雪碧图-一图图标"><a href="#CSS-sprite-雪碧图-一图图标" class="headerlink" title="CSS sprite 雪碧图 一图图标"></a>CSS sprite 雪碧图 一图图标</h3><p><code> https://css.spritegen.com/</code></p><h3 id="缩放"><a href="#缩放" class="headerlink" title="缩放"></a>缩放</h3><pre class="language-none"><code class="language-none">transform: scale(.9);</code></pre><h3 id="Vue-父元素向子元素传参"><a href="#Vue-父元素向子元素传参" class="headerlink" title="Vue 父元素向子元素传参"></a>Vue 父元素向子元素传参</h3><h3 id="Vue-子元素向父元素传参"><a href="#Vue-子元素向父元素传参" class="headerlink" title="Vue 子元素向父元素传参"></a>Vue 子元素向父元素传参</h3><p>父</p><pre class="language-none"><code class="language-none">&lt;v-child @toChild_function&#x3D;&#39;fatherFunction&#39;&gt;fatherFunction(data)&#123; this.x &#x3D; data &#125;</code></pre><p>子</p><pre class="language-none"><code class="language-none">this.$emit(&#39;toChild_function&#39;, this.data)react 引号嵌套变量 使用$&#123;&#125;时外面使用反引号&#96;</code></pre><h3 id="i-标签-嵌套样式"><a href="#i-标签-嵌套样式" class="headerlink" title="i 标签 嵌套样式"></a>i 标签 嵌套样式</h3><pre class="language-none"><code class="language-none">&lt;i style&#x3D;&#123;&#123;background:url($&#123;require(&quot;..&#x2F;..&#x2F;..&#x2F;..&#x2F;assets&#x2F;imgs&#x2F;ico&#x2F;InspectionArea.svg&quot;)&#125;)&#96;&#125;&#125;&#x2F;&gt;</code></pre><h3 id="Json-的key含有特殊符号的-取值处理"><a href="#Json-的key含有特殊符号的-取值处理" class="headerlink" title="Json 的key含有特殊符号的 取值处理"></a>Json 的key含有特殊符号的 取值处理</h3><p>使用[‘key’]取出</p><pre class="language-none"><code class="language-none">father[&#39;special.key&#39;].son</code></pre><h3 id="控制页面滚动"><a href="#控制页面滚动" class="headerlink" title="控制页面滚动"></a>控制页面滚动</h3><p>scrollTo </p><p>窗口滚动和块内滚动需要绑定不同参数</p><p>x , y 为滚动的像素 可以使用offsetTop获取对上一层的高度</p><pre class="language-none"><code class="language-none">window.scrollTo(x,y)document.querySelector(&quot;body&quot;).scrollTo(x,y)const myRef &#x3D; useRef(null)&lt;div ref&#x3D;&#123;myRef&#125; style&#x3D;&#123;&#123;height:1000px&#125;&#125;&gt;&lt;button onclick&#x3D;&#123;()&#x3D;&gt;scrollToRef(myRef)&#125;&#x2F;&gt;const scrollToRef &#x3D; (ref) &#x3D;&gt; window.scrollTo(0, ref.current.offsetTop)  const scrollToRef &#x3D; (ref) &#x3D;&gt; ref.current.scrollTo(0, ref.current.offsetTop)  &#x2F;&#x2F;顶部const scrollToRef &#x3D; (ref) &#x3D;&gt; ref.current.scrollTo(0, ref.current.clientHeight-220) 下移</code></pre><h3 id="当-setState-设置值后有时无法获取-无法执行下一步函数"><a href="#当-setState-设置值后有时无法获取-无法执行下一步函数" class="headerlink" title="当 setState 设置值后有时无法获取 无法执行下一步函数"></a>当 setState 设置值后有时无法获取 无法执行下一步函数</h3><ul><li>使用useEffect监听</li><li>使用useRef</li></ul><pre class="language-none"><code class="language-none">const[num, setNum] &#x3D; (0)​    useEffect(() &#x3D;&gt; &#123;​        getNum()​    &#125;, [num])​    const getNum &#x3D; () &#x3D;&gt; &#123;​        const newStr &#x3D; &quot;现在数字是&quot; + num​        setStr(newStr)​    &#125;​    ​    const main&#x3D; () &#x3D;&gt; &#123;​        setNum(num + 1)​    &#125;const numRef &#x3D; useRef(1)const [num, setNum] &#x3D; useState(numRef.current)const [str, setStr] &#x3D; useState(&quot;现在数字是1&quot;)const getNum &#x3D; () &#x3D;&gt; &#123;​    const newStr &#x3D; &quot;现在数字是&quot; + numRef.current​    changeStr(newStr)&#125;const main &#x3D; () &#x3D;&gt; &#123;​    numRef.current &#x3D; num + 1​    changeNum(numRef.current)​    getNum()&#125;</code></pre><h3 id="JSON-全局搜索"><a href="#JSON-全局搜索" class="headerlink" title="JSON 全局搜索"></a>JSON 全局搜索</h3><pre class="language-none"><code class="language-none">function searchExpertInput(searchKey: any) &#123;​    debugger​    let eList &#x3D; [...expertListPre]​    let temp &#x3D; []​    if (searchKey.trim() !&#x3D;&#x3D; &quot;&quot;) &#123;​        for (let line of eList) &#123;​            let lineArr &#x3D; line.dataMap​            &#x2F;&#x2F;行循环去重跳出标志位​            let tflag &#x3D; true​            &#x2F;&#x2F;循环行内参数​            Object.keys(lineArr).forEach(k &#x3D;&gt; &#123;​                if (tflag) &#123;​                    let v &#x3D; lineArr[k]​                    if (v.toString().trim() !&#x3D;&#x3D; &quot;&quot; &amp;&amp; v.toString().indexOf(searchKey) !&#x3D;&#x3D; -1) &#123;​                        temp.push(line)​                        tflag &#x3D; false​                    &#125;​                &#125;​            &#125;)​        &#125;​    &#125; else &#123;​        temp &#x3D; [...expertListPre]​    &#125;​    setExpertList(temp)&#125;</code></pre><h3 id="useState-更新"><a href="#useState-更新" class="headerlink" title="useState 更新"></a>useState 更新</h3><p>useState放入同一个对象并不会重新渲染 </p><pre class="language-none"><code class="language-none">t &#x3D; &#123;...old&#125;tt &#x3D; [...old]</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 通用编程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> javascript </tag>
+            
+            <tag> html </tag>
+            
+            <tag> css </tag>
+            
+            <tag> vue </tag>
+            
+            <tag> react </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hadoop 主从节点 Linux 下的安装</title>
+      <link href="/2020/03/12/Hadoop-master-slave-node-installation-under-Linux/"/>
+      <url>/2020/03/12/Hadoop-master-slave-node-installation-under-Linux/</url>
+      
+        <content type="html"><![CDATA[<span id="more"></span><h2 id="1-修改-user-获得-root-的放权"><a href="#1-修改-user-获得-root-的放权" class="headerlink" title="1.修改 user 获得 root 的放权"></a>1.修改 user 获得 root 的放权</h2><h2 id="2-关闭防火墙服务并禁用启动项"><a href="#2-关闭防火墙服务并禁用启动项" class="headerlink" title="2.关闭防火墙服务并禁用启动项"></a>2.关闭防火墙服务并禁用启动项</h2><p>CentOS 6 root</p><pre class="language-none"><code class="language-none">su root exitsudo service iptables statussudo service iptables stopsudo chkconfig iptables off</code></pre><p>查看所有启动项   可用提示功能</p><pre class="language-none"><code class="language-none">chkconfig --list</code></pre><p>查看所有服务</p><pre class="language-none"><code class="language-none">service --status-all</code></pre><h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="3-设置IP"><a href="#3-设置IP" class="headerlink" title="3.设置IP"></a>3.设置IP</h2><h3 id="修改本机ip-符合-NAT-网段"><a href="#修改本机ip-符合-NAT-网段" class="headerlink" title="修改本机ip 符合 NAT 网段"></a>修改本机ip 符合 NAT 网段</h3><p>1.修改文件</p><p>2.使用图形设置</p><pre class="language-none"><code class="language-none">IP Address    NAT 设置 IP 起始往后NetMask       NAT 同Gateway       NAT 中     NAT 设置中     网关 IPDNS           8.8.8.8    223.6.6.6</code></pre><h2 id="4-修改-HOST-主机名"><a href="#4-修改-HOST-主机名" class="headerlink" title="4.修改 HOST 主机名"></a>4.修改 HOST 主机名</h2><pre class="language-none"><code class="language-none">sudo vim &#x2F;etc&#x2F;sysconfig&#x2F;network</code></pre><p>更改HOSTNAME   重启后生效</p><h2 id="5-配置-Host-文件"><a href="#5-配置-Host-文件" class="headerlink" title="5.配置 Host 文件"></a>5.配置 Host 文件</h2><pre class="language-none"><code class="language-none">sudo vim &#x2F;etc&#x2F;hosts</code></pre><p>添加自身在内的所有节点host及对应ip</p><h2 id="6-配置公私钥"><a href="#6-配置公私钥" class="headerlink" title="6.配置公私钥"></a>6.配置公私钥</h2><pre class="language-none"><code class="language-none">cd ~&#x2F;.ssh&#x2F;# 添加密钥ssh-keygen -t rsa    </code></pre><p>远程终端上</p><pre class="language-none"><code class="language-none"># 公钥复制到远程终端并写入cat id_rsa.pub &gt;&gt; authorized_keys   chmod 600 authorized_keyschmod 700 ~&#x2F;.sshSSH HOSTNAME或IP即可</code></pre><h2 id="7-JDK复制并配置-PATH"><a href="#7-JDK复制并配置-PATH" class="headerlink" title="7.JDK复制并配置 $PATH"></a>7.JDK复制并配置 $PATH</h2><pre class="language-none"><code class="language-none"># 复制并定位到用户目录桌面下cd ~&#x2F;desktopmkdir javamv ~&#x2F;Desktop&#x2F;A.tar .&#x2F;java&#x2F;tar zxvf A.tarvim ~&#x2F;.bashrc     # 设置 PATH 加入export JAVA_HOME&#x3D;&#x2F;home&#x2F;USERNAME&#x2F;BIN&#x2F;jdkexport PATH&#x3D;$&#123;JAVA_HOME&#125;&#x2F;bin:$PATH# 生效source ~&#x2F;.bashrc     echo $PATH</code></pre><h2 id="8-Hadoop复制并配置-PATH"><a href="#8-Hadoop复制并配置-PATH" class="headerlink" title="8.Hadoop复制并配置$PATH"></a>8.Hadoop复制并配置$PATH</h2><pre class="language-none"><code class="language-none"># 复制到目录 并 解压vim ~&#x2F;.bashrc    # 设置 PATH 加入export HADOOP_HOME&#x3D;&#x2F;home&#x2F;USERNAME&#x2F;BIN&#x2F;hadoopexport PATH&#x3D;$&#123;HADOOP_HOME&#125;&#x2F;bin:$&#123;HADOOP_HOME&#125;&#x2F;sbin:$PATH# 生效source ~&#x2F;.bashrc</code></pre><h2 id="9-修改Hadoop相关配置文件"><a href="#9-修改Hadoop相关配置文件" class="headerlink" title="9.修改Hadoop相关配置文件"></a>9.修改Hadoop相关配置文件</h2><pre class="language-none"><code class="language-none"># 配置文件路径*&#x2F;hadoop&#x2F;etc&#x2F;hadoop&#x2F;# 修改文件hadoop-env.sh  #25# 修改JAVA_HOME目录yarn-env.sh   #yarn-site.xmlcore-site.xmlhdfs-site.xmlmapred-site.xml</code></pre><h2 id="10-分步启动-伪分布式-主节点Hadoop"><a href="#10-分步启动-伪分布式-主节点Hadoop" class="headerlink" title="10.分步启动 伪分布式 主节点Hadoop"></a>10.分步启动 伪分布式 主节点Hadoop</h2><p>格式化文件系统</p><pre class="language-none"><code class="language-none">hadoop namemode -format</code></pre><p>启动HDFS的命令 datanode</p><pre class="language-none"><code class="language-none">start-dfs.sh</code></pre><p>启动yarn</p><pre class="language-none"><code class="language-none">start-yarn.sh</code></pre><p>验证启动</p><pre class="language-none"><code class="language-none">jsp​    namenode​    datanode​    secondaryNameNode​    ResouceManger</code></pre><p>单独启动&#x2F;停止某一个进程 如 namenode、yarn的进程</p><pre class="language-none"><code class="language-none">hadoop-daemon.sh start namenode</code></pre><h2 id="11-配置分布式-从节点-Hadoop"><a href="#11-配置分布式-从节点-Hadoop" class="headerlink" title="11.配置分布式 从节点 Hadoop"></a>11.配置分布式 从节点 Hadoop</h2><p>关机 并复制主节点 </p><pre class="language-none"><code class="language-none">halt</code></pre><p>修改 HOST 主机名</p><pre class="language-none"><code class="language-none">sudo vim &#x2F;etc&#x2F;sysconfig&#x2F;network</code></pre><p>删掉node2 公私钥 创建新密钥</p><pre class="language-none"><code class="language-none">cd ~&#x2F;.sshrm id_rsa.pubrm authorized_keysssh-keygen -t rsa [path]</code></pre><p>修改authorized_keys</p><p>在node2 的 authorized_keys 添加 node1公钥</p><p>复制 公钥和的 authorized_keys 到 node1</p><p>相反亦可</p><p>并测试SSH</p><pre class="language-none"><code class="language-none">cat .&#x2F;id_dsa.pub &gt;&gt; ~&#x2F;.ssh&#x2F;authorized_keysscp root@A0:&#x2F;home&#x2F;a&#x2F;.ssh&#x2F;id_dsa.pub .&#x2F;id-dsa.pub.A0cat id-dsa.pub.A0 &gt;&gt; authorized_keysscp .&#x2F;authorized_keys root@A0:&#x2F;home&#x2F;a&#x2F;.ssh&#x2F;authorized_keysssh A0exitssh A1exit</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 通用编程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hadoop </tag>
+            
+            <tag> linux </tag>
+            
+            <tag> centos </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Vuex 与 前端登录拦截器</title>
+      <link href="/2020/03/10/vuex-and-front-end-login-interceptor/"/>
+      <url>/2020/03/10/vuex-and-front-end-login-interceptor/</url>
+      
+        <content type="html"><![CDATA[<span id="more"></span><p>首先要明确，登录状态应该被视为一个<strong>全局属性，</strong>避免在各个组件间的重复传参。</p><p>Vuex，它是专门为 Vue 开发的状态管理方案，我们可以把需要在各个组件中传递使用的变量、方法定义在这里，正好满足需要。</p><h2 id="引入-Vuex"><a href="#引入-Vuex" class="headerlink" title="引入 Vuex"></a>引入 Vuex</h2><pre class="language-none"><code class="language-none">npm install vuex --save</code></pre><p>src 目录下新建一个文件夹 store\index.js</p><pre class="language-vue" data-language="vue"><code class="language-vue">import Vue from &#39;vue&#39; import Vuex from &#39;vuex&#39; Vue.use(Vuex)</code></pre><p>index.js 里设置我们需要的状态变量和方法。</p><p>localStorage，即本地存储</p><pre class="language-vue" data-language="vue"><code class="language-vue">export default new Vuex.Store(&#123;  state: &#123;​    user: &#123;​      username: window.localStorage.getItem(&#39;user&#39; || &#39;[]&#39;) &#x3D;&#x3D; null ? &#39;&#39; : JSON.parse(window.localStorage.getItem(&#39;user&#39; || &#39;[]&#39;)).username​    &#125;  &#125;,  mutations: &#123;​    login (state, user) &#123;​      state.user &#x3D; user​      window.localStorage.setItem(&#39;user&#39;, JSON.stringify(user))​    &#125;  &#125;&#125;)</code></pre><h2 id="修改路由配置"><a href="#修改路由配置" class="headerlink" title="修改路由配置"></a>修改路由配置</h2><p>src\router\index.js</p><p>拦截的路由添加 <strong>requireAuth</strong> 字段 以区分拦截</p><pre class="language-vue" data-language="vue"><code class="language-vue">&#123;  path: &#39;&#x2F;index&#39;,  name: &#39;AppIndex&#39;,  component: AppIndex,  meta: &#123;​    requireAuth: true  &#125;&#125;</code></pre><h2 id="使用钩子函数判断是否拦截"><a href="#使用钩子函数判断是否拦截" class="headerlink" title="使用钩子函数判断是否拦截"></a>使用钩子函数判断是否拦截</h2><p>router.beforeEach()， 在访问每一个路由前调用</p><p>src\main.js 添加对 store 的引用</p><pre class="language-none"><code class="language-none">import store from &#39;.&#x2F;store&#39;</code></pre><h2 id="router后添加store"><a href="#router后添加store" class="headerlink" title="router后添加store"></a>router后添加store</h2><p>添加beforeEach() 函数</p><pre class="language-vue" data-language="vue"><code class="language-vue">import Vue from &#39;vue&#39;import App from &#39;.&#x2F;App&#39;import router from &#39;.&#x2F;router&#39;import store from &#39;.&#x2F;store&#39;import ElementUI from &#39;element-ui&#39;import &#39;element-ui&#x2F;lib&#x2F;theme-chalk&#x2F;index.css&#39;var axios &#x3D; require(&#39;axios&#39;)axios.defaults.baseURL &#x3D; &#39;http:&#x2F;&#x2F;localhost:8443&#x2F;api&#39;Vue.prototype.$axios &#x3D; axiosVue.config.productionTip &#x3D; falseVue.use(ElementUI)router.beforeEach((to, from, next) &#x3D;&gt; &#123;​    if (to.meta.requireAuth) &#123;​      if (store.state.user.username) &#123;​        next()​      &#125; else &#123;​        next(&#123;​          path: &#39;login&#39;,​          query: &#123;redirect: to.fullPath&#125;​        &#125;)​      &#125;​    &#125; else &#123;​      next()​    &#125;  &#125;)&#x2F;* eslint-disable no-new *&#x2F;new Vue(&#123;  el: &#39;#app&#39;,  render: h &#x3D;&gt; h(App),  router,  store,  components: &#123; App &#125;,  template: &#39;&lt;App&#x2F;&gt;&#39;&#125;)</code></pre><h2 id="修改-Login-vue"><a href="#修改-Login-vue" class="headerlink" title="修改 Login.vue"></a>修改 Login.vue</h2><p>返回的成功代码时，触发 store 中的 login() 方法，把 loginForm 对象传递给 store 中的 user 对象</p><p>也可以 获得 user 表的完整信息，比如用户昵称、用户级别等，返回前端，并传递给 user</p><p>获取登录前页面的路径并跳转，如果该路径不存在，则跳转到首页</p><pre class="language-none"><code class="language-none">login () &#123;  var _this &#x3D; this  console.log(this.$store.state)  this.$axios​    .post(&#39;&#x2F;login&#39;, &#123;​      username: this.loginForm.username,​      password: this.loginForm.password​    &#125;)​    .then(successResponse &#x3D;&gt; &#123;​      if (successResponse.data.code &#x3D;&#x3D;&#x3D; 200) &#123;​        &#x2F;&#x2F; var data &#x3D; this.loginForm​        _this.$store.commit(&#39;login&#39;, _this.loginForm)​        var path &#x3D; this.$route.query.redirect​        this.$router.replace(&#123;path: path &#x3D;&#x3D;&#x3D; &#39;&#x2F;&#39; || path &#x3D;&#x3D;&#x3D; undefined ? &#39;&#x2F;index&#39; : path&#125;)​      &#125;​    &#125;)​    .catch(failResponse &#x3D;&gt; &#123;​    &#125;)&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 通用编程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> vue </tag>
+            
+            <tag> web </tag>
+            
+            <tag> vuex </tag>
+            
+            <tag> 前端 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>IDEA 使用 Git远程服务器 同步工程</title>
+      <link href="/2019/04/29/IDEA-uses-Git-remote-server-to-synchronize-projects/"/>
+      <url>/2019/04/29/IDEA-uses-Git-remote-server-to-synchronize-projects/</url>
+      
+        <content type="html"><![CDATA[<span id="more"></span><h2 id="1-获取本机不存在的Project"><a href="#1-获取本机不存在的Project" class="headerlink" title="1. 获取本机不存在的Project"></a>1. 获取本机不存在的Project</h2><p><strong>未建立项目时</strong></p><pre class="language-none"><code class="language-none">Checkout from Version Control &gt; Git</code></pre><p>在编辑器内时</p><pre class="language-none"><code class="language-none">VCS &gt; Checkout from Version Control &gt; Git&#x2F;&#x2F;或者&#x2F;&#x2F;Git &gt; Clone</code></pre><p>URL 服务器端存储地址</p><pre class="language-none"><code class="language-none">ssh:&#x2F;&#x2F;git@ip:port&#x2F;home&#x2F;git&#x2F;*.git</code></pre><h3 id="对于JSP项目配置环境"><a href="#对于JSP项目配置环境" class="headerlink" title="对于JSP项目配置环境"></a>对于JSP<Java Web>项目配置环境</h3><p>配置SDK</p><pre class="language-none"><code class="language-none">File &gt; Project Structure​     \&gt; Project     配置SDK​     \&gt; Modules   配置jar包     ​         \+ &gt; Library &gt; Application Server Libraries &gt; Tomecat</code></pre><p>配置支持框架</p><pre class="language-none"><code class="language-none">右键项目 &gt; Add Framework Support &gt;​    勾选Web Application</code></pre><p>配置服务器</p><pre class="language-none"><code class="language-none">Edit Configurations &gt; + &gt; Tomcat Server &gt; Local</code></pre><h2 id="2-将新建本地Project保存到远程仓库"><a href="#2-将新建本地Project保存到远程仓库" class="headerlink" title="2. 将新建本地Project保存到远程仓库"></a>2. 将新建本地Project保存到远程仓库</h2><h3 id="新建远程仓库"><a href="#新建远程仓库" class="headerlink" title="新建远程仓库"></a>新建远程仓库</h3><p>登陆服务器Git用户</p><pre class="language-none"><code class="language-none">cd      &#x2F;&#x2F;切换到~home    git init --bare *.git</code></pre><h3 id="IDEA中-创建本地仓库"><a href="#IDEA中-创建本地仓库" class="headerlink" title="IDEA中 创建本地仓库"></a>IDEA中 创建本地仓库</h3><pre class="language-none"><code class="language-none">VCS &gt; Import into Version Control &gt; Create Git Repository选择当前Project目录右键工程 &gt; Git &gt; Add</code></pre><h3 id="将本地仓库推到远程仓库"><a href="#将本地仓库推到远程仓库" class="headerlink" title="将本地仓库推到远程仓库"></a>将本地仓库推到远程仓库</h3><pre class="language-none"><code class="language-none">Comit 添加注释后Push &gt; Define Remote &gt; URL​    ssh:&#x2F;&#x2F;git@ip:port&#x2F;home&#x2F;git&#x2F;*.git﻿</code></pre><h2 id="3-将本地Project更改Push远程仓库"><a href="#3-将本地Project更改Push远程仓库" class="headerlink" title="3. 将本地Project更改Push远程仓库"></a>3. 将本地Project更改Push远程仓库</h2><p>提交[Commit-(Ctrl+K)-]更改到本地仓库  并添加备注</p><p>将本地仓库Push-(Ctrl+Shift+K)-到远程仓库  选择需要提交的更改[注释显示]</p><h2 id="4-更新本地Project"><a href="#4-更新本地Project" class="headerlink" title="4. 更新本地Project"></a>4. 更新本地Project</h2><p><strong>Pull</strong></p><p>Pull是直接下载并合并</p><p><strong>Fetch</strong></p><p>Fetch是从远程仓库下载文件到本地的origin&#x2F;master，然后可以手动对比修改决定是否合并到本地的master库</p><h2 id="5-新建和提交分支"><a href="#5-新建和提交分支" class="headerlink" title="5. 新建和提交分支"></a>5. 新建和提交分支</h2><p><strong>创建本地分支</strong></p><pre class="language-none"><code class="language-none">VCS &gt; Git &gt; Branches或者 右下角Git:Master​    \&gt; +New Branch</code></pre><p>在分支下Push, 提交分支</p><h2 id="6-获取和合并分支"><a href="#6-获取和合并分支" class="headerlink" title="6.获取和合并分支"></a>6.获取和合并分支</h2><p>切换本地分支</p><pre class="language-none"><code class="language-none">Git:master &gt; Local Branches &gt; A Branche &gt; CheckOut</code></pre><p>获取远程仓库新分支</p><pre class="language-none"><code class="language-none">Pull &gt; 刷新按钮 &gt; PullGit:master &gt; Remote Branches &gt; A Branche &gt; Checkout As</code></pre><p>合并分支到主分支</p><pre class="language-none"><code class="language-none">VCS &gt; Git &gt; Repository &gt; Merge Changes勾选需要合并的分支 &gt; Merge</code></pre><h2 id="同步原理注释"><a href="#同步原理注释" class="headerlink" title="同步原理注释"></a>同步原理注释</h2><p><img src="IDEA-uses-Git-remote-server-to-synchronize-projects/1.jpg" alt="1" loading="lazy"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 通用编程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> idea </tag>
+            
+            <tag> git </tag>
+            
+            <tag> 服务器 </tag>
+            
+            <tag> 同步 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>✨Kirakira</title>
+  <icon>https://blog.kirakira.eu/favicon.png</icon>
+  
+  <link href="https://blog.kirakira.eu/atom.xml" rel="self"/>
+  
+  <link href="https://blog.kirakira.eu/"/>
+  <updated>2022-12-07T11:06:55.316Z</updated>
+  <id>https://blog.kirakira.eu/</id>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://blog.kirakira.eu/2022/12/07/hello-world/"/>
+    <id>https://blog.kirakira.eu/2022/12/07/hello-world/</id>
+    <published>2022-12-07T11:06:55.316Z</published>
+    <updated>2022-12-07T11:06:55.316Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Evernote 迁移 Notion 记录</title>
+    <link href="https://blog.kirakira.eu/2022/06/10/Evernote2Notion/"/>
+    <id>https://blog.kirakira.eu/2022/06/10/Evernote2Notion/</id>
+    <published>2022-06-10T16:41:34.000Z</published>
+    <updated>2022-06-10T16:41:34.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;Evernote 迁移 Notion 的记录和随笔&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="系统维护" scheme="https://blog.kirakira.eu/categories/%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4/"/>
+    
+    
+    <category term="Notion" scheme="https://blog.kirakira.eu/tags/Notion/"/>
+    
+    <category term="Evernote" scheme="https://blog.kirakira.eu/tags/Evernote/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>windows输入法切换的三种快捷键 与 输入法切换快捷键重启失效修复</title>
+    <link href="https://blog.kirakira.eu/2021/10/02/input-method-shortcuts-and-fixes/"/>
+    <id>https://blog.kirakira.eu/2021/10/02/input-method-shortcuts-and-fixes/</id>
+    <published>2021-10-02T17:02:13.000Z</published>
+    <updated>2021-10-02T17:02:13.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;本文探究一种更优雅的方式在多个输入法间切换，以及输入法快捷键设置在重启后失效的原因分析与修复。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="系统维护" scheme="https://blog.kirakira.eu/categories/%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4/"/>
+    
+    
+    <category term="windows" scheme="https://blog.kirakira.eu/tags/windows/"/>
+    
+    <category term="输入法" scheme="https://blog.kirakira.eu/tags/%E8%BE%93%E5%85%A5%E6%B3%95/"/>
+    
+    <category term="快捷键" scheme="https://blog.kirakira.eu/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
+    
+    <category term="win10" scheme="https://blog.kirakira.eu/tags/win10/"/>
+    
+    <category term="win11" scheme="https://blog.kirakira.eu/tags/win11/"/>
+    
+    <category term="regedit" scheme="https://blog.kirakira.eu/tags/regedit/"/>
+    
+    <category term="注册表" scheme="https://blog.kirakira.eu/tags/%E6%B3%A8%E5%86%8C%E8%A1%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2021-动画番剧正确观看指南</title>
+    <link href="https://blog.kirakira.eu/2021/06/11/animation-viewing-guide/"/>
+    <id>https://blog.kirakira.eu/2021/06/11/animation-viewing-guide/</id>
+    <published>2021-06-11T11:21:16.000Z</published>
+    <updated>2021-06-11T11:21:16.000Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;在2021年中期这个时间点，汇总梳理目前比较良好的看番方式，包括不限于当季新番、剧场版动画、无修正的旧番BD、独立企划OVA等。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="ACGN" scheme="https://blog.kirakira.eu/categories/ACGN/"/>
+    
+    
+    <category term="动画" scheme="https://blog.kirakira.eu/tags/%E5%8A%A8%E7%94%BB/"/>
+    
+    <category term="番剧" scheme="https://blog.kirakira.eu/tags/%E7%95%AA%E5%89%A7/"/>
+    
+    <category term="OVA" scheme="https://blog.kirakira.eu/tags/OVA/"/>
+    
+    <category term="剧场版" scheme="https://blog.kirakira.eu/tags/%E5%89%A7%E5%9C%BA%E7%89%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端框架常见开发问题 FAQ</title>
+    <link href="https://blog.kirakira.eu/2020/11/21/Front-end-framework-FAQ/"/>
+    <id>https://blog.kirakira.eu/2020/11/21/Front-end-framework-FAQ/</id>
+    <published>2020-11-21T14:28:21.000Z</published>
+    <updated>2020-11-21T14:28:21.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;span id=&quot;more&quot;&gt;&lt;/span&gt;
+
+&lt;h1 id=&quot;前端设计注意&quot;&gt;&lt;a href=&quot;#前端设计注意&quot; class=&quot;headerlink&quot; title=&quot;前端设计注意&quot;&gt;&lt;/a&gt;前端设计注意&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;h3</summary>
+        
+      
+    
+    
+    
+    <category term="通用编程" scheme="https://blog.kirakira.eu/categories/%E9%80%9A%E7%94%A8%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="javascript" scheme="https://blog.kirakira.eu/tags/javascript/"/>
+    
+    <category term="html" scheme="https://blog.kirakira.eu/tags/html/"/>
+    
+    <category term="css" scheme="https://blog.kirakira.eu/tags/css/"/>
+    
+    <category term="vue" scheme="https://blog.kirakira.eu/tags/vue/"/>
+    
+    <category term="react" scheme="https://blog.kirakira.eu/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hadoop 主从节点 Linux 下的安装</title>
+    <link href="https://blog.kirakira.eu/2020/03/12/Hadoop-master-slave-node-installation-under-Linux/"/>
+    <id>https://blog.kirakira.eu/2020/03/12/Hadoop-master-slave-node-installation-under-Linux/</id>
+    <published>2020-03-12T15:41:46.000Z</published>
+    <updated>2020-03-12T15:41:46.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;span id=&quot;more&quot;&gt;&lt;/span&gt;
+
+&lt;h2 id=&quot;1-修改-user-获得-root-的放权&quot;&gt;&lt;a href=&quot;#1-修改-user-获得-root-的放权&quot; class=&quot;headerlink&quot; title=&quot;1.修改 user 获得 root</summary>
+        
+      
+    
+    
+    
+    <category term="通用编程" scheme="https://blog.kirakira.eu/categories/%E9%80%9A%E7%94%A8%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="hadoop" scheme="https://blog.kirakira.eu/tags/hadoop/"/>
+    
+    <category term="linux" scheme="https://blog.kirakira.eu/tags/linux/"/>
+    
+    <category term="centos" scheme="https://blog.kirakira.eu/tags/centos/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vuex 与 前端登录拦截器</title>
+    <link href="https://blog.kirakira.eu/2020/03/10/vuex-and-front-end-login-interceptor/"/>
+    <id>https://blog.kirakira.eu/2020/03/10/vuex-and-front-end-login-interceptor/</id>
+    <published>2020-03-10T16:40:22.000Z</published>
+    <updated>2020-03-10T16:40:22.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;span id=&quot;more&quot;&gt;&lt;/span&gt;
+
+&lt;p&gt;首先要明确，登录状态应该被视为一个&lt;strong&gt;全局属性，&lt;/strong&gt;避免在各个组件间的重复传参。&lt;/p&gt;
+&lt;p&gt;Vuex，它是专门为 Vue</summary>
+        
+      
+    
+    
+    
+    <category term="通用编程" scheme="https://blog.kirakira.eu/categories/%E9%80%9A%E7%94%A8%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="vue" scheme="https://blog.kirakira.eu/tags/vue/"/>
+    
+    <category term="web" scheme="https://blog.kirakira.eu/tags/web/"/>
+    
+    <category term="vuex" scheme="https://blog.kirakira.eu/tags/vuex/"/>
+    
+    <category term="前端" scheme="https://blog.kirakira.eu/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>IDEA 使用 Git远程服务器 同步工程</title>
+    <link href="https://blog.kirakira.eu/2019/04/29/IDEA-uses-Git-remote-server-to-synchronize-projects/"/>
+    <id>https://blog.kirakira.eu/2019/04/29/IDEA-uses-Git-remote-server-to-synchronize-projects/</id>
+    <published>2019-04-29T05:10:11.000Z</published>
+    <updated>2019-04-29T05:10:11.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;span id=&quot;more&quot;&gt;&lt;/span&gt;
+
+&lt;h2 id=&quot;1-获取本机不存在的Project&quot;&gt;&lt;a href=&quot;#1-获取本机不存在的Project&quot; class=&quot;headerlink&quot; title=&quot;1. 获取本机不存在的Project&quot;&gt;&lt;/a&gt;1.</summary>
+        
+      
+    
+    
+    
+    <category term="通用编程" scheme="https://blog.kirakira.eu/categories/%E9%80%9A%E7%94%A8%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="idea" scheme="https://blog.kirakira.eu/tags/idea/"/>
+    
+    <category term="git" scheme="https://blog.kirakira.eu/tags/git/"/>
+    
+    <category term="服务器" scheme="https://blog.kirakira.eu/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    <category term="同步" scheme="https://blog.kirakira.eu/tags/%E5%90%8C%E6%AD%A5/"/>
+    
+  </entry>
+  
+</feed>

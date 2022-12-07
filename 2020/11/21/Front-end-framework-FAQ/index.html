@@ -1,0 +1,293 @@
+<!DOCTYPE html><html lang="zh-CN"><head><!-- hexo injector head_begin start --><link href="/css/hexo-tag-common.css" rel="stylesheet"/><!-- hexo injector head_begin end --><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#6200ee"><meta name="author" content=""><meta name="copyright" content=""><meta name="generator" content="Hexo 6.3.0"><meta name="theme" content="hexo-theme-yun"><title>前端框架常见开发问题 FAQ | ✨Kirakira</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><script src="//at.alicdn.com/t/font_1140697_dxory92pb0h.js" async></script><script src="https://fastly.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+}
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><link rel="icon" type="image/svg+xml" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#6200ee"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fastly.jsdelivr.net/npm/" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"blog.kirakira.eu","root":"/","title":["Kirakira","Blog"],"version":"1.10.9","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.yunyoujun.cn/img/avatar/none.jpg","fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]},"waline":{"config":{"enable":true,"serverURL":"https://blog-comment-pi.vercel.app","comment":true,"visitor":true,"emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/bilibili/","https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/weibo/","https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/qq/"],"locale":{"placeholder":"填写邮箱，可以收到回复通知哦～"},"meta":["nick","mail"],"requiredMeta":["nick"],"recordIP":false,"highlight":true,"pageSize":10,"el":"#waline","lang":"zh-CN"},"cdn":"https://fastly.jsdelivr.net/npm/@waline/client@v2/dist/waline.js","dark":"html.dark"},"vendors":{"host":"https://fastly.jsdelivr.net/npm/","darken":"https://fastly.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><link rel="alternate" href="/atom.xml" title="✨Kirakira" type="application/atom+xml"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/null"><script src="//at.alicdn.com/t/font_1140697_dxory92pb0h.js" async></script><link rel="preconnect" href="https://www.google-analytics.com" crossorigin><script async src="https://www.googletagmanager.com/gtag/js?id=G-EHWHX6L2NJ"></script><script>if (CONFIG.hostname === location.hostname) {
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-EHWHX6L2NJ');
+}</script><script>(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();</script><meta name="description" content="前端设计注意 class单元拆分公共部分 margin padding不应使用百分比 使用数字使用calc减去对应值 vue 组件应该尽量拆分  Box 定位div 垂直居中display:flex;&#x2F;*Flex布局*&#x2F;  display: -webkit-flex; &#x2F;* Safari *&#x2F;  align-items:center;&#x2F;*指定垂">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端框架常见开发问题 FAQ">
+<meta property="og:url" content="https://blog.kirakira.eu/2020/11/21/Front-end-framework-FAQ/index.html">
+<meta property="og:site_name" content="✨Kirakira">
+<meta property="og:description" content="前端设计注意 class单元拆分公共部分 margin padding不应使用百分比 使用数字使用calc减去对应值 vue 组件应该尽量拆分  Box 定位div 垂直居中display:flex;&#x2F;*Flex布局*&#x2F;  display: -webkit-flex; &#x2F;* Safari *&#x2F;  align-items:center;&#x2F;*指定垂">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-21T14:28:21.000Z">
+<meta property="article:modified_time" content="2020-11-21T14:28:21.000Z">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="html">
+<meta property="article:tag" content="css">
+<meta property="article:tag" content="vue">
+<meta property="article:tag" content="react">
+<meta name="twitter:card" content="summary"><script>(function() {
+  if (CONFIG.mode !== 'auto') return
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script><script>// Define global variable
+IconifyProviders = {
+  // Empty prefix: overwrite default API provider configuration
+  '': {
+    // Use custom API first, use Iconify public API as backup
+    resources: [
+        'https://api.iconify.design',
+    ],
+    // Wait for 1 second before switching API hosts
+    rotate: 1000,
+  },
+};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title=""><img width="96" loading="lazy" src="/img/head.jpeg" alt=""><span class="site-author-status" title="Looking">🌑</span></a><div class="site-author-name"><a href="/about/"></a></div><span class="site-name">✨Kirakira</span><sub class="site-subtitle"></sub><div class="site-description"></div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="我的主页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">8</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">3</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">28</span></a></div><a class="site-state-item hty-icon-button" href="/null"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rss-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://t.me/AIKETI" title="Telegram" target="_blank" style="color:#0088CC"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-telegram-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF%E8%AE%BE%E8%AE%A1%E6%B3%A8%E6%84%8F"><span class="toc-text">前端设计注意</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#class%E5%8D%95%E5%85%83%E6%8B%86%E5%88%86%E5%85%AC%E5%85%B1%E9%83%A8%E5%88%86"><span class="toc-text">class单元拆分公共部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#margin-padding%E4%B8%8D%E5%BA%94%E4%BD%BF%E7%94%A8%E7%99%BE%E5%88%86%E6%AF%94-%E4%BD%BF%E7%94%A8%E6%95%B0%E5%AD%97%E4%BD%BF%E7%94%A8calc%E5%87%8F%E5%8E%BB%E5%AF%B9%E5%BA%94%E5%80%BC"><span class="toc-text">margin padding不应使用百分比 使用数字使用calc减去对应值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vue-%E7%BB%84%E4%BB%B6%E5%BA%94%E8%AF%A5%E5%B0%BD%E9%87%8F%E6%8B%86%E5%88%86"><span class="toc-text">vue 组件应该尽量拆分</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Box-%E5%AE%9A%E4%BD%8D"><span class="toc-text">Box 定位</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#div-%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD"><span class="toc-text">div 垂直居中</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#div%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD"><span class="toc-text">div水平居中</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BA%E5%AE%9A%E8%A1%8C%E5%AE%BD-%E6%BA%A2%E5%87%BA%E9%9A%90%E8%97%8F"><span class="toc-text">固定行宽 溢出隐藏</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BE%B9%E6%A1%86"><span class="toc-text">边框</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#border-%E9%81%BF%E5%85%8D%E6%9C%AA%E8%AE%BE%E7%BD%AE%E7%B1%BB%E5%9E%8B%E8%80%8C%E4%B8%8D%E6%98%BE%E7%A4%BA"><span class="toc-text">border 避免未设置类型而不显示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#border%E7%9A%84%E8%AE%BE%E7%BD%AE%E5%B1%9E%E6%80%A7"><span class="toc-text">border的设置属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#box%E5%AF%B9%E9%BD%90"><span class="toc-text">box对齐</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-JavaScript-%E5%87%BD%E6%95%B0%E6%B7%BB%E5%8A%A0-CSS-%E6%A0%B7%E5%BC%8F"><span class="toc-text">使用 JavaScript 函数添加 CSS 样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue"><span class="toc-text">vue</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%8F%92%E4%BB%B6"><span class="toc-text">Vue滚动条插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS-sprite-%E9%9B%AA%E7%A2%A7%E5%9B%BE-%E4%B8%80%E5%9B%BE%E5%9B%BE%E6%A0%87"><span class="toc-text">CSS sprite 雪碧图 一图图标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%A9%E6%94%BE"><span class="toc-text">缩放</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue-%E7%88%B6%E5%85%83%E7%B4%A0%E5%90%91%E5%AD%90%E5%85%83%E7%B4%A0%E4%BC%A0%E5%8F%82"><span class="toc-text">Vue 父元素向子元素传参</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue-%E5%AD%90%E5%85%83%E7%B4%A0%E5%90%91%E7%88%B6%E5%85%83%E7%B4%A0%E4%BC%A0%E5%8F%82"><span class="toc-text">Vue 子元素向父元素传参</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#i-%E6%A0%87%E7%AD%BE-%E5%B5%8C%E5%A5%97%E6%A0%B7%E5%BC%8F"><span class="toc-text">i 标签 嵌套样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Json-%E7%9A%84key%E5%90%AB%E6%9C%89%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7%E7%9A%84-%E5%8F%96%E5%80%BC%E5%A4%84%E7%90%86"><span class="toc-text">Json 的key含有特殊符号的 取值处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E9%A1%B5%E9%9D%A2%E6%BB%9A%E5%8A%A8"><span class="toc-text">控制页面滚动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%93-setState-%E8%AE%BE%E7%BD%AE%E5%80%BC%E5%90%8E%E6%9C%89%E6%97%B6%E6%97%A0%E6%B3%95%E8%8E%B7%E5%8F%96-%E6%97%A0%E6%B3%95%E6%89%A7%E8%A1%8C%E4%B8%8B%E4%B8%80%E6%AD%A5%E5%87%BD%E6%95%B0"><span class="toc-text">当 setState 设置值后有时无法获取 无法执行下一步函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JSON-%E5%85%A8%E5%B1%80%E6%90%9C%E7%B4%A2"><span class="toc-text">JSON 全局搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#useState-%E6%9B%B4%E6%96%B0"><span class="toc-text">useState 更新</span></a></li></ol></li></ol></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#6200ee;"><link itemprop="mainEntityOfPage" href="https://blog.kirakira.eu/2020/11/21/Front-end-framework-FAQ/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content=""><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="✨Kirakira"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">前端框架常见开发问题 FAQ</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="创建时间：2020-11-21 22:28:21" itemprop="dateCreated datePublished" datetime="2020-11-21T22:28:21+08:00">2020-11-21</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="阅读时长"><span class="icon iconify" data-icon="ri:timer-line"></span></span> <span title="阅读时长">4m</span></span></span><span class="leancloud_visitors" id="/2020/11/21/Front-end-framework-FAQ/" data-flag-title="前端框架常见开发问题 FAQ"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><span class="icon iconify" data-icon="ri:eye-line"></span> <span class="leancloud-visitors-count"></span></span></span><span class="post-meta-divider">-</span><a href="#comment"><span class="post-meta-item-icon" title="评论数"><span class="icon iconify" data-icon="ri:chat-3-line"></span> <span class="waline-comment-count" id="/2020/11/21/Front-end-framework-FAQ/"></span></span></a><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E9%80%9A%E7%94%A8%E7%BC%96%E7%A8%8B/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">通用编程</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/javascript/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">javascript</span></a><a class="tag-item" href="/tags/html/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">html</span></a><a class="tag-item" href="/tags/css/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">css</span></a><a class="tag-item" href="/tags/vue/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">vue</span></a><a class="tag-item" href="/tags/react/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">react</span></a></span></div><div class="post-author"><div class="author-avatar"><img src="https://www.gravatar.com/avatar/8fa867fb73a9376d1bb220360cdfbce0?s=20&amp;d=https%3A%2F%2Fcdn.yunyoujun.cn%2Fimg%2Favatar%2Fnone.jpg"></div><span class="author-name">LuckyStar</span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><span id="more"></span>
+
+<h1 id="前端设计注意"><a href="#前端设计注意" class="headerlink" title="前端设计注意"></a>前端设计注意</h1><ul>
+<li><h3 id="class单元拆分公共部分"><a href="#class单元拆分公共部分" class="headerlink" title="class单元拆分公共部分"></a>class单元拆分公共部分</h3></li>
+<li><h3 id="margin-padding不应使用百分比-使用数字使用calc减去对应值"><a href="#margin-padding不应使用百分比-使用数字使用calc减去对应值" class="headerlink" title="margin padding不应使用百分比 使用数字使用calc减去对应值"></a>margin padding不应使用百分比 使用数字使用calc减去对应值</h3></li>
+<li><h3 id="vue-组件应该尽量拆分"><a href="#vue-组件应该尽量拆分" class="headerlink" title="vue 组件应该尽量拆分"></a>vue 组件应该尽量拆分</h3></li>
+</ul>
+<h1 id="Box-定位"><a href="#Box-定位" class="headerlink" title="Box 定位"></a>Box 定位</h1><h2 id="div-垂直居中"><a href="#div-垂直居中" class="headerlink" title="div 垂直居中"></a>div 垂直居中</h2><pre class="language-none"><code class="language-none">display:flex;&#x2F;*Flex布局*&#x2F;
+
+display: -webkit-flex; &#x2F;* Safari *&#x2F;
+
+align-items:center;&#x2F;*指定垂直居中*&#x2F;</code></pre>
+
+
+
+<h2 id="div水平居中"><a href="#div水平居中" class="headerlink" title="div水平居中"></a>div水平居中</h2><pre class="language-none"><code class="language-none"># 内div固定宽度 Flex
+.out&#123;
+​    width: 300px;
+​    height: 300px;
+​    display: flex;
+​    display: -webkit-flex;
+​    justify-content: center;
+​    align-items: center;
+&#125;
+
+.out .in&#123;
+​    width: 100px;
+​    height: 100px;
+&#125;
+
+</code></pre>
+
+
+
+<h2 id="固定行宽-溢出隐藏"><a href="#固定行宽-溢出隐藏" class="headerlink" title="固定行宽 溢出隐藏"></a>固定行宽 溢出隐藏</h2><pre class="language-none"><code class="language-none">&#123;
+	width: calc(100% - 150px);
+	overflow: hidden;
+	height: 16px;
+	display: inline-block;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+&#125;</code></pre>
+
+
+
+<h1 id="边框"><a href="#边框" class="headerlink" title="边框"></a>边框</h1><h2 id="border-避免未设置类型而不显示"><a href="#border-避免未设置类型而不显示" class="headerlink" title="border 避免未设置类型而不显示"></a>border 避免未设置类型而不显示</h2><pre class="language-none"><code class="language-none">border-right:1px solid #F00;</code></pre>
+
+
+
+<h2 id="border的设置属性"><a href="#border的设置属性" class="headerlink" title="border的设置属性"></a>border的设置属性</h2><table>
+<thead>
+<tr>
+<th>none</th>
+<th>定义无边框。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>hidden</td>
+<td>与 “none” 相同。不过应用于表时除外，对于表，hidden 用于解决边框冲突。</td>
+</tr>
+<tr>
+<td>dotted</td>
+<td>定义点状边框。在大多数浏览器中呈现为实线。</td>
+</tr>
+<tr>
+<td>dashed</td>
+<td>定义虚线。在大多数浏览器中呈现为实线。</td>
+</tr>
+<tr>
+<td>solid</td>
+<td>定义实线。</td>
+</tr>
+<tr>
+<td>double</td>
+<td>定义双线。双线的宽度等于 border-width 的值。</td>
+</tr>
+<tr>
+<td>groove</td>
+<td>定义 3D 凹槽边框。其效果取决于 border-color 的值。</td>
+</tr>
+<tr>
+<td>ridge</td>
+<td>定义 3D 垄状边框。其效果取决于 border-color 的值。</td>
+</tr>
+<tr>
+<td>inset</td>
+<td>定义 3D inset 边框。其效果取决于 border-color 的值。</td>
+</tr>
+<tr>
+<td>outset</td>
+<td>定义 3D outset 边框。其效果取决于 border-color 的值。</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>规定应该从父元素继承边框样式。</td>
+</tr>
+</tbody></table>
+<h2 id="box对齐"><a href="#box对齐" class="headerlink" title="box对齐"></a>box对齐</h2><ul>
+<li><p>margin 外盒 影响对齐</p>
+</li>
+<li><p>padding 内盒 不影响border </p>
+</li>
+<li><p>设置为 box-sizing: border-box;</p>
+</li>
+</ul>
+<h2 id="使用-JavaScript-函数添加-CSS-样式"><a href="#使用-JavaScript-函数添加-CSS-样式" class="headerlink" title="使用 JavaScript 函数添加 CSS 样式"></a>使用 JavaScript 函数添加 CSS 样式</h2><ul>
+<li><p>使用变量 + 函数 + addEventListenerd 改变样式变量</p>
+</li>
+<li><p>使用函数 + addEventListener 直接return Style-String</p>
+</li>
+</ul>
+<p>​    </p>
+<h2 id="vue"><a href="#vue" class="headerlink" title="vue"></a>vue</h2><h3 id="Vue滚动条插件"><a href="#Vue滚动条插件" class="headerlink" title="Vue滚动条插件"></a>Vue滚动条插件</h3><p>vue-custom-scrollbar</p>
+<pre class="language-none"><code class="language-none">npm install vue-custom-scrollbar</code></pre>
+
+
+
+<h3 id="CSS-sprite-雪碧图-一图图标"><a href="#CSS-sprite-雪碧图-一图图标" class="headerlink" title="CSS sprite 雪碧图 一图图标"></a>CSS sprite 雪碧图 一图图标</h3><p><code> https://css.spritegen.com/</code></p>
+<h3 id="缩放"><a href="#缩放" class="headerlink" title="缩放"></a>缩放</h3><pre class="language-none"><code class="language-none">transform: scale(.9);</code></pre>
+
+
+
+<h3 id="Vue-父元素向子元素传参"><a href="#Vue-父元素向子元素传参" class="headerlink" title="Vue 父元素向子元素传参"></a>Vue 父元素向子元素传参</h3><h3 id="Vue-子元素向父元素传参"><a href="#Vue-子元素向父元素传参" class="headerlink" title="Vue 子元素向父元素传参"></a>Vue 子元素向父元素传参</h3><p>父</p>
+<pre class="language-none"><code class="language-none">&lt;v-child @toChild_function&#x3D;&#39;fatherFunction&#39;&gt;
+
+fatherFunction(data)&#123; this.x &#x3D; data &#125;</code></pre>
+
+
+
+<p>子</p>
+<pre class="language-none"><code class="language-none">this.$emit(&#39;toChild_function&#39;, this.data)
+
+react 引号嵌套变量 使用$&#123;&#125;时外面使用反引号&#96;</code></pre>
+
+
+
+<h3 id="i-标签-嵌套样式"><a href="#i-标签-嵌套样式" class="headerlink" title="i 标签 嵌套样式"></a>i 标签 嵌套样式</h3><pre class="language-none"><code class="language-none">&lt;i style&#x3D;&#123;&#123;background:url($&#123;require(&quot;..&#x2F;..&#x2F;..&#x2F;..&#x2F;assets&#x2F;imgs&#x2F;ico&#x2F;InspectionArea.svg&quot;)&#125;)&#96;&#125;&#125;
+&#x2F;&gt;</code></pre>
+
+<h3 id="Json-的key含有特殊符号的-取值处理"><a href="#Json-的key含有特殊符号的-取值处理" class="headerlink" title="Json 的key含有特殊符号的 取值处理"></a>Json 的key含有特殊符号的 取值处理</h3><p>使用[‘key’]取出</p>
+<pre class="language-none"><code class="language-none">father[&#39;special.key&#39;].son</code></pre>
+
+
+
+<h3 id="控制页面滚动"><a href="#控制页面滚动" class="headerlink" title="控制页面滚动"></a>控制页面滚动</h3><p>scrollTo </p>
+<p>窗口滚动和块内滚动需要绑定不同参数</p>
+<p>x , y 为滚动的像素 可以使用offsetTop获取对上一层的高度</p>
+<pre class="language-none"><code class="language-none">window.scrollTo(x,y)
+
+document.querySelector(&quot;body&quot;).scrollTo(x,y)
+
+const myRef &#x3D; useRef(null)
+&lt;div ref&#x3D;&#123;myRef&#125; style&#x3D;&#123;&#123;height:1000px&#125;&#125;&gt;
+&lt;button onclick&#x3D;&#123;()&#x3D;&gt;scrollToRef(myRef)&#125;&#x2F;&gt;
+
+const scrollToRef &#x3D; (ref) &#x3D;&gt; window.scrollTo(0, ref.current.offsetTop)  
+const scrollToRef &#x3D; (ref) &#x3D;&gt; ref.current.scrollTo(0, ref.current.offsetTop)  &#x2F;&#x2F;顶部
+const scrollToRef &#x3D; (ref) &#x3D;&gt; ref.current.scrollTo(0, ref.current.clientHeight-220) 下移</code></pre>
+
+
+
+<h3 id="当-setState-设置值后有时无法获取-无法执行下一步函数"><a href="#当-setState-设置值后有时无法获取-无法执行下一步函数" class="headerlink" title="当 setState 设置值后有时无法获取 无法执行下一步函数"></a>当 setState 设置值后有时无法获取 无法执行下一步函数</h3><ul>
+<li>使用useEffect监听</li>
+<li>使用useRef</li>
+</ul>
+<pre class="language-none"><code class="language-none">const[num, setNum] &#x3D; (0)
+
+​    
+
+useEffect(() &#x3D;&gt; &#123;
+​        getNum()
+​    &#125;, [num])
+
+​    const getNum &#x3D; () &#x3D;&gt; &#123;
+​        const newStr &#x3D; &quot;现在数字是&quot; + num
+​        setStr(newStr)
+​    &#125;
+
+​    
+​    const main&#x3D; () &#x3D;&gt; &#123;
+​        setNum(num + 1)
+​    &#125;
+
+const numRef &#x3D; useRef(1)
+const [num, setNum] &#x3D; useState(numRef.current)
+const [str, setStr] &#x3D; useState(&quot;现在数字是1&quot;)
+
+const getNum &#x3D; () &#x3D;&gt; &#123;
+​    const newStr &#x3D; &quot;现在数字是&quot; + numRef.current
+​    changeStr(newStr)
+&#125;
+
+const main &#x3D; () &#x3D;&gt; &#123;
+​    numRef.current &#x3D; num + 1
+​    changeNum(numRef.current)
+​    getNum()
+&#125;</code></pre>
+
+
+
+<h3 id="JSON-全局搜索"><a href="#JSON-全局搜索" class="headerlink" title="JSON 全局搜索"></a>JSON 全局搜索</h3><pre class="language-none"><code class="language-none">function searchExpertInput(searchKey: any) &#123;
+​    debugger
+​    let eList &#x3D; [...expertListPre]
+​    let temp &#x3D; []
+
+​    if (searchKey.trim() !&#x3D;&#x3D; &quot;&quot;) &#123;
+​        for (let line of eList) &#123;
+​            let lineArr &#x3D; line.dataMap
+​            &#x2F;&#x2F;行循环去重跳出标志位
+​            let tflag &#x3D; true
+​            &#x2F;&#x2F;循环行内参数
+​            Object.keys(lineArr).forEach(k &#x3D;&gt; &#123;
+​                if (tflag) &#123;
+​                    let v &#x3D; lineArr[k]
+​                    if (v.toString().trim() !&#x3D;&#x3D; &quot;&quot; &amp;&amp; v.toString().indexOf(searchKey) !&#x3D;&#x3D; -1) &#123;
+​                        temp.push(line)
+​                        tflag &#x3D; false
+​                    &#125;
+​                &#125;
+​            &#125;)
+​        &#125;
+​    &#125; else &#123;
+​        temp &#x3D; [...expertListPre]
+​    &#125;
+
+​    setExpertList(temp)
+&#125;</code></pre>
+
+
+
+<h3 id="useState-更新"><a href="#useState-更新" class="headerlink" title="useState 更新"></a>useState 更新</h3><p>useState放入同一个对象并不会重新渲染 </p>
+<pre class="language-none"><code class="language-none">t &#x3D; &#123;...old&#125;
+
+tt &#x3D; [...old]</code></pre>
+
+</div></section><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>LuckyStar</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://blog.kirakira.eu/2020/11/21/Front-end-framework-FAQ/" title="前端框架常见开发问题 FAQ">https://blog.kirakira.eu/2020/11/21/Front-end-framework-FAQ/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><span class="icon iconify" data-icon="ri:creative-commons-line"></span><span class="icon iconify" data-icon="ri:creative-commons-by-line"></span><span class="icon iconify" data-icon="ri:creative-commons-nc-line"></span><span class="icon iconify" data-icon="ri:creative-commons-sa-line"></span></a> 许可协议。</li></ul></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2021/06/11/animation-viewing-guide/" rel="prev" title="2021-动画番剧正确观看指南"><span class="icon iconify" data-icon="ri:arrow-left-s-line"></span><span class="post-nav-text">2021-动画番剧正确观看指南</span></a></div><div class="post-nav-item"><a class="post-nav-next" href="/2020/03/12/Hadoop-master-slave-node-installation-under-Linux/" rel="next" title="Hadoop 主从节点 Linux 下的安装"><span class="post-nav-text">Hadoop 主从节点 Linux 下的安装</span><span class="icon iconify" data-icon="ri:arrow-right-s-line"></span></a></div></div></div><div class="hty-card" id="comment"><div id="waline"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"><script>window.CONFIG.waline.config.path = "/2020/11/21/Front-end-framework-FAQ/"</script><div class="js-Pjax"><script src="/js/comments/waline.js" type="module" defer></script></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2020 – 2022 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> </span></div></footer></div><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><span class="icon iconify" data-icon="ri:arrow-up-s-line"></span><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#6200ee" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" target="_blank" rel="noopener" href="https://www.google.com/search?q=site:blog.kirakira.eu" title="搜索"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:search-line"></span></span></a><!-- hexo injector body_end start --><script src="/js/hexo-tag-common.js"></script><!-- hexo injector body_end end --></body></html>

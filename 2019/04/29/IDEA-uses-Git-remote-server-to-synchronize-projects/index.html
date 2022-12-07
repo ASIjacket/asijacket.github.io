@@ -1,0 +1,152 @@
+<!DOCTYPE html><html lang="zh-CN"><head><!-- hexo injector head_begin start --><link href="/css/hexo-tag-common.css" rel="stylesheet"/><!-- hexo injector head_begin end --><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#6200ee"><meta name="author" content=""><meta name="copyright" content=""><meta name="generator" content="Hexo 6.3.0"><meta name="theme" content="hexo-theme-yun"><title>IDEA 使用 Git远程服务器 同步工程 | ✨Kirakira</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" media="print" onload="this.media='all'"><script src="//at.alicdn.com/t/font_1140697_dxory92pb0h.js" async></script><script src="https://fastly.jsdelivr.net/npm/scrollreveal/dist/scrollreveal.min.js" defer></script><script>function initScrollReveal() {
+  [".post-card",".markdown-body img"].forEach((target)=> {
+    ScrollReveal().reveal(target);
+  })
+}
+document.addEventListener("DOMContentLoaded", initScrollReveal);
+document.addEventListener("pjax:success", initScrollReveal);
+</script><link rel="icon" type="image/svg+xml" href="/yun.svg"><link rel="mask-icon" href="/yun.svg" color="#6200ee"><link rel="preload" href="/css/hexo-theme-yun.css" as="style"><link rel="preload" href="/js/hexo-theme-yun.js" as="script"><link rel="prefetch" href="/js/sidebar.js" as="script"><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="preconnect" href="https://fastly.jsdelivr.net/npm/" crossorigin><script id="yun-config">
+    window.Yun = {}
+    window.CONFIG = {"hostname":"blog.kirakira.eu","root":"/","title":["Kirakira","Blog"],"version":"1.10.9","mode":"auto","copycode":true,"page":{"isPost":true},"i18n":{"placeholder":"搜索...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）"},"anonymous_image":"https://cdn.yunyoujun.cn/img/avatar/none.jpg","fireworks":{"colors":["102, 167, 221","62, 131, 225","33, 78, 194"]},"waline":{"config":{"enable":true,"serverURL":"https://blog-comment-pi.vercel.app","comment":true,"visitor":true,"emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/bilibili/","https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/weibo/","https://cdn.jsdelivr.net/gh/walinejs/emojis@latest/qq/"],"locale":{"placeholder":"填写邮箱，可以收到回复通知哦～"},"meta":["nick","mail"],"requiredMeta":["nick"],"recordIP":false,"highlight":true,"pageSize":10,"el":"#waline","lang":"zh-CN"},"cdn":"https://fastly.jsdelivr.net/npm/@waline/client@v2/dist/waline.js","dark":"html.dark"},"vendors":{"host":"https://fastly.jsdelivr.net/npm/","darken":"https://fastly.jsdelivr.net/npm/darken@1.5.0"}};
+  </script><link rel="stylesheet" href="/css/hexo-theme-yun.css"><script src="/js/hexo-theme-yun.js" type="module"></script><link rel="alternate" href="/atom.xml" title="✨Kirakira" type="application/atom+xml"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/null"><script src="//at.alicdn.com/t/font_1140697_dxory92pb0h.js" async></script><link rel="preconnect" href="https://www.google-analytics.com" crossorigin><script async src="https://www.googletagmanager.com/gtag/js?id=G-EHWHX6L2NJ"></script><script>if (CONFIG.hostname === location.hostname) {
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-EHWHX6L2NJ');
+}</script><script>(function(){
+  var bp = document.createElement('script');
+  var curProtocol = window.location.protocol.split(':')[0];
+  if (curProtocol === 'https') {
+    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else {
+    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(bp, s);
+})();</script><meta name="description" content="1. 获取本机不存在的Project未建立项目时 Checkout from Version Control &gt; Git    在编辑器内时 VCS &gt; Checkout from Version Control &gt; Git  &#x2F;&#x2F;或者&#x2F;&#x2F;  Git &gt; Clone    URL 服务器端存储地址 ssh:&#x2F;&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IDEA 使用 Git远程服务器 同步工程">
+<meta property="og:url" content="https://blog.kirakira.eu/2019/04/29/IDEA-uses-Git-remote-server-to-synchronize-projects/index.html">
+<meta property="og:site_name" content="✨Kirakira">
+<meta property="og:description" content="1. 获取本机不存在的Project未建立项目时 Checkout from Version Control &gt; Git    在编辑器内时 VCS &gt; Checkout from Version Control &gt; Git  &#x2F;&#x2F;或者&#x2F;&#x2F;  Git &gt; Clone    URL 服务器端存储地址 ssh:&#x2F;&#x2F;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.kirakira.eu/2019/04/29/IDEA-uses-Git-remote-server-to-synchronize-projects/IDEA-uses-Git-remote-server-to-synchronize-projects/1.jpg">
+<meta property="article:published_time" content="2019-04-29T05:10:11.000Z">
+<meta property="article:modified_time" content="2019-04-29T05:10:11.000Z">
+<meta property="article:tag" content="idea">
+<meta property="article:tag" content="git">
+<meta property="article:tag" content="服务器">
+<meta property="article:tag" content="同步">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.kirakira.eu/2019/04/29/IDEA-uses-Git-remote-server-to-synchronize-projects/IDEA-uses-Git-remote-server-to-synchronize-projects/1.jpg"><script>(function() {
+  if (CONFIG.mode !== 'auto') return
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const setting = localStorage.getItem('darken-mode') || 'auto'
+  if (setting === 'dark' || (prefersDark && setting !== 'light'))
+    document.documentElement.classList.toggle('dark', true)
+})()</script></head><body><script src="https://code.iconify.design/2/2.1.1/iconify.min.js"></script><script>// Define global variable
+IconifyProviders = {
+  // Empty prefix: overwrite default API provider configuration
+  '': {
+    // Use custom API first, use Iconify public API as backup
+    resources: [
+        'https://api.iconify.design',
+    ],
+    // Wait for 1 second before switching API hosts
+    rotate: 1000,
+  },
+};</script><script defer src="https://fastly.jsdelivr.net/npm/animejs@latest"></script><script defer src="/js/ui/fireworks.js" type="module"></script><canvas class="fireworks"></canvas><div class="container"><a class="sidebar-toggle hty-icon-button" id="menu-btn"><div class="hamburger hamburger--spin" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span></div></a><div class="sidebar-toggle sidebar-overlay"></div><aside class="sidebar"><script src="/js/sidebar.js" type="module"></script><ul class="sidebar-nav"><li class="sidebar-nav-item sidebar-nav-toc hty-icon-button sidebar-nav-active" data-target="post-toc-wrap" title="文章目录"><span class="icon iconify" data-icon="ri:list-ordered"></span></li><li class="sidebar-nav-item sidebar-nav-overview hty-icon-button" data-target="site-overview-wrap" title="站点概览"><span class="icon iconify" data-icon="ri:passport-line"></span></li></ul><div class="sidebar-panel" id="site-overview-wrap"><div class="site-info fix-top"><a class="site-author-avatar" href="/about/" title=""><img width="96" loading="lazy" src="/img/head.jpeg" alt=""><span class="site-author-status" title="Looking">🌑</span></a><div class="site-author-name"><a href="/about/"></a></div><span class="site-name">✨Kirakira</span><sub class="site-subtitle"></sub><div class="site-description"></div></div><nav class="site-state"><a class="site-state-item hty-icon-button icon-home" href="/" title="我的主页"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a><div class="site-state-item"><a href="/archives/" title="归档"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-archive-line"></use></svg></span><span class="site-state-item-count">8</span></a></div><div class="site-state-item"><a href="/categories/" title="分类"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-folder-2-line"></use></svg></span><span class="site-state-item-count">3</span></a></div><div class="site-state-item"><a href="/tags/" title="标签"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-price-tag-3-line"></use></svg></span><span class="site-state-item-count">28</span></a></div><a class="site-state-item hty-icon-button" href="/null"><span class="site-state-item-icon"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-home-4-line"></use></svg></span></a></nav><hr style="margin-bottom:0.5rem"><div class="links-of-author"><a class="links-of-author-item hty-icon-button" rel="noopener" href="/atom.xml" title="RSS" target="_blank" style="color:orange"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rss-line"></use></svg></a><a class="links-of-author-item hty-icon-button" rel="noopener" href="https://t.me/AIKETI" title="Telegram" target="_blank" style="color:#0088CC"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-telegram-line"></use></svg></a></div><br><a class="links-item hty-icon-button" id="toggle-mode-btn" href="javascript:;" title="Mode" style="color: #f1cb64"><span class="icon iconify" data-icon="ri:contrast-2-line"></span></a></div><div class="sidebar-panel sidebar-panel-active" id="post-toc-wrap"><div class="post-toc"><div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84Project"><span class="toc-text">1. 获取本机不存在的Project</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8EJSP%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83"><span class="toc-text">对于JSP项目配置环境</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%B0%86%E6%96%B0%E5%BB%BA%E6%9C%AC%E5%9C%B0Project%E4%BF%9D%E5%AD%98%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="toc-text">2. 将新建本地Project保存到远程仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="toc-text">新建远程仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IDEA%E4%B8%AD-%E5%88%9B%E5%BB%BA%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93"><span class="toc-text">IDEA中 创建本地仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E6%8E%A8%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="toc-text">将本地仓库推到远程仓库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%B0%86%E6%9C%AC%E5%9C%B0Project%E6%9B%B4%E6%94%B9Push%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="toc-text">3. 将本地Project更改Push远程仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%9B%B4%E6%96%B0%E6%9C%AC%E5%9C%B0Project"><span class="toc-text">4. 更新本地Project</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%96%B0%E5%BB%BA%E5%92%8C%E6%8F%90%E4%BA%A4%E5%88%86%E6%94%AF"><span class="toc-text">5. 新建和提交分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E8%8E%B7%E5%8F%96%E5%92%8C%E5%90%88%E5%B9%B6%E5%88%86%E6%94%AF"><span class="toc-text">6.获取和合并分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E5%8E%9F%E7%90%86%E6%B3%A8%E9%87%8A"><span class="toc-text">同步原理注释</span></a></li></ol></div></div></div></aside><main class="sidebar-translate" id="content"><div id="post"><article class="hty-card post-block" itemscope itemtype="https://schema.org/Article" style="--smc-primary:#6200ee;"><link itemprop="mainEntityOfPage" href="https://blog.kirakira.eu/2019/04/29/IDEA-uses-Git-remote-server-to-synchronize-projects/"><span hidden itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content=""><meta itemprop="description"></span><span hidden itemprop="publisher" itemscope itemtype="https://schema.org/Organization"><meta itemprop="name" content="✨Kirakira"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">IDEA 使用 Git远程服务器 同步工程</h1><div class="post-meta"><div class="post-time" style="display:block"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:calendar-line"></span></span> <time title="创建时间：2019-04-29 13:10:11" itemprop="dateCreated datePublished" datetime="2019-04-29T13:10:11+08:00">2019-04-29</time></div><span class="post-count"><span class="post-symbolcount"><span class="post-meta-item-icon" title="阅读时长"><span class="icon iconify" data-icon="ri:timer-line"></span></span> <span title="阅读时长">2m</span></span></span><span class="leancloud_visitors" id="/2019/04/29/IDEA-uses-Git-remote-server-to-synchronize-projects/" data-flag-title="IDEA 使用 Git远程服务器 同步工程"><span class="post-meta-divider">-</span><span class="post-meta-item-icon" title="阅读次数"><span class="icon iconify" data-icon="ri:eye-line"></span> <span class="leancloud-visitors-count"></span></span></span><span class="post-meta-divider">-</span><a href="#comment"><span class="post-meta-item-icon" title="评论数"><span class="icon iconify" data-icon="ri:chat-3-line"></span> <span class="waline-comment-count" id="/2019/04/29/IDEA-uses-Git-remote-server-to-synchronize-projects/"></span></span></a><div class="post-classify"><span class="post-category"> <span class="post-meta-item-icon" style="margin-right:3px;"><span class="icon iconify" data-icon="ri:folder-line"></span></span><span itemprop="about" itemscope itemtype="https://schema.org/Thing"><a class="category-item" href="/categories/%E9%80%9A%E7%94%A8%E7%BC%96%E7%A8%8B/" style="--text-color:var(--hty-text-color)" itemprop="url" rel="index"><span itemprop="text">通用编程</span></a></span></span><span class="post-tag"><span class="post-meta-divider">-</span><a class="tag-item" href="/tags/idea/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">idea</span></a><a class="tag-item" href="/tags/git/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">git</span></a><a class="tag-item" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">服务器</span></a><a class="tag-item" href="/tags/%E5%90%8C%E6%AD%A5/" style="--text-color:var(--hty-text-color)"><span class="post-meta-item-icon"><span class="icon iconify" data-icon="ri:price-tag-3-line"></span></span><span class="tag-name">同步</span></a></span></div><div class="post-author"><div class="author-avatar"><img src="https://www.gravatar.com/avatar/8fa867fb73a9376d1bb220360cdfbce0?s=20&amp;d=https%3A%2F%2Fcdn.yunyoujun.cn%2Fimg%2Favatar%2Fnone.jpg"></div><span class="author-name">LuckyStar</span></div></div></header><section class="post-body" itemprop="articleBody"><div class="post-content markdown-body"><span id="more"></span>
+
+<h2 id="1-获取本机不存在的Project"><a href="#1-获取本机不存在的Project" class="headerlink" title="1. 获取本机不存在的Project"></a>1. 获取本机不存在的Project</h2><p><strong>未建立项目时</strong></p>
+<pre class="language-none"><code class="language-none">Checkout from Version Control &gt; Git</code></pre>
+
+
+
+<p>在编辑器内时</p>
+<pre class="language-none"><code class="language-none">VCS &gt; Checkout from Version Control &gt; Git
+
+&#x2F;&#x2F;或者&#x2F;&#x2F;
+
+Git &gt; Clone</code></pre>
+
+
+
+<p>URL 服务器端存储地址</p>
+<pre class="language-none"><code class="language-none">ssh:&#x2F;&#x2F;git@ip:port&#x2F;home&#x2F;git&#x2F;*.git</code></pre>
+
+
+
+<h3 id="对于JSP项目配置环境"><a href="#对于JSP项目配置环境" class="headerlink" title="对于JSP项目配置环境"></a>对于JSP<Java Web>项目配置环境</h3><p>配置SDK</p>
+<pre class="language-none"><code class="language-none">File &gt; Project Structure
+​     \&gt; Project     配置SDK
+​     \&gt; Modules   配置jar包     
+​         \+ &gt; Library &gt; Application Server Libraries &gt; Tomecat</code></pre>
+
+
+
+<p>配置支持框架</p>
+<pre class="language-none"><code class="language-none">右键项目 &gt; Add Framework Support &gt;
+​    勾选Web Application</code></pre>
+
+
+
+<p>配置服务器</p>
+<pre class="language-none"><code class="language-none">Edit Configurations &gt; + &gt; Tomcat Server &gt; Local</code></pre>
+
+
+
+<h2 id="2-将新建本地Project保存到远程仓库"><a href="#2-将新建本地Project保存到远程仓库" class="headerlink" title="2. 将新建本地Project保存到远程仓库"></a>2. 将新建本地Project保存到远程仓库</h2><h3 id="新建远程仓库"><a href="#新建远程仓库" class="headerlink" title="新建远程仓库"></a>新建远程仓库</h3><p>登陆服务器Git用户</p>
+<pre class="language-none"><code class="language-none">cd      &#x2F;&#x2F;切换到~home    
+git init --bare *.git</code></pre>
+
+
+
+<h3 id="IDEA中-创建本地仓库"><a href="#IDEA中-创建本地仓库" class="headerlink" title="IDEA中 创建本地仓库"></a>IDEA中 创建本地仓库</h3><pre class="language-none"><code class="language-none">VCS &gt; Import into Version Control &gt; Create Git Repository
+
+选择当前Project目录
+
+右键工程 &gt; Git &gt; Add</code></pre>
+
+
+
+<h3 id="将本地仓库推到远程仓库"><a href="#将本地仓库推到远程仓库" class="headerlink" title="将本地仓库推到远程仓库"></a>将本地仓库推到远程仓库</h3><pre class="language-none"><code class="language-none">Comit 添加注释后
+
+Push &gt; Define Remote &gt; URL
+​    ssh:&#x2F;&#x2F;git@ip:port&#x2F;home&#x2F;git&#x2F;*.git﻿</code></pre>
+
+
+
+<h2 id="3-将本地Project更改Push远程仓库"><a href="#3-将本地Project更改Push远程仓库" class="headerlink" title="3. 将本地Project更改Push远程仓库"></a>3. 将本地Project更改Push远程仓库</h2><p>提交[Commit-(Ctrl+K)-]更改到本地仓库  并添加备注</p>
+<p>将本地仓库Push-(Ctrl+Shift+K)-到远程仓库  选择需要提交的更改[注释显示]</p>
+<h2 id="4-更新本地Project"><a href="#4-更新本地Project" class="headerlink" title="4. 更新本地Project"></a>4. 更新本地Project</h2><p><strong>Pull</strong></p>
+<p>Pull是直接下载并合并</p>
+<p><strong>Fetch</strong></p>
+<p>Fetch是从远程仓库下载文件到本地的origin&#x2F;master，然后可以手动对比修改决定是否合并到本地的master库</p>
+<h2 id="5-新建和提交分支"><a href="#5-新建和提交分支" class="headerlink" title="5. 新建和提交分支"></a>5. 新建和提交分支</h2><p><strong>创建本地分支</strong></p>
+<pre class="language-none"><code class="language-none">VCS &gt; Git &gt; Branches
+或者 右下角Git:Master
+​    \&gt; +New Branch</code></pre>
+
+<p>在分支下Push, 提交分支</p>
+<h2 id="6-获取和合并分支"><a href="#6-获取和合并分支" class="headerlink" title="6.获取和合并分支"></a>6.获取和合并分支</h2><p>切换本地分支</p>
+<pre class="language-none"><code class="language-none">Git:master &gt; Local Branches &gt; A Branche &gt; CheckOut</code></pre>
+
+
+
+<p>获取远程仓库新分支</p>
+<pre class="language-none"><code class="language-none">Pull &gt; 刷新按钮 &gt; Pull
+
+Git:master &gt; Remote Branches &gt; A Branche &gt; Checkout As</code></pre>
+
+
+
+<p>合并分支到主分支</p>
+<pre class="language-none"><code class="language-none">VCS &gt; Git &gt; Repository &gt; Merge Changes
+
+勾选需要合并的分支 &gt; Merge</code></pre>
+
+
+
+<h2 id="同步原理注释"><a href="#同步原理注释" class="headerlink" title="同步原理注释"></a>同步原理注释</h2><p><img src="IDEA-uses-Git-remote-server-to-synchronize-projects/1.jpg" alt="1" loading="lazy"></p>
+</div></section><ul class="post-copyright"><li class="post-copyright-author"><strong>本文作者：</strong>LuckyStar</li><li class="post-copyright-link"><strong>本文链接：</strong><a href="https://blog.kirakira.eu/2019/04/29/IDEA-uses-Git-remote-server-to-synchronize-projects/" title="IDEA 使用 Git远程服务器 同步工程">https://blog.kirakira.eu/2019/04/29/IDEA-uses-Git-remote-server-to-synchronize-projects/</a></li><li class="post-copyright-license"><strong>版权声明：</strong>本博客所有文章除特别声明外，均默认采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener" title="CC BY-NC-SA 4.0 "><span class="icon iconify" data-icon="ri:creative-commons-line"></span><span class="icon iconify" data-icon="ri:creative-commons-by-line"></span><span class="icon iconify" data-icon="ri:creative-commons-nc-line"></span><span class="icon iconify" data-icon="ri:creative-commons-sa-line"></span></a> 许可协议。</li></ul></article><div class="post-nav"><div class="post-nav-item"><a class="post-nav-prev" href="/2020/03/10/vuex-and-front-end-login-interceptor/" rel="prev" title="Vuex 与 前端登录拦截器"><span class="icon iconify" data-icon="ri:arrow-left-s-line"></span><span class="post-nav-text">Vuex 与 前端登录拦截器</span></a></div><div class="post-nav-item"></div></div></div><div class="hty-card" id="comment"><div id="waline"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@waline/client@v2/dist/waline.css"><script>window.CONFIG.waline.config.path = "/2019/04/29/IDEA-uses-Git-remote-server-to-synchronize-projects/"</script><div class="js-Pjax"><script src="/js/comments/waline.js" type="module" defer></script></div></div></main><footer class="sidebar-translate" id="footer"><div class="copyright"><span>&copy; 2020 – 2022 </span><span class="with-love" id="animate"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-cloud-line"></use></svg></span><span class="author"> </span></div></footer></div><a class="hty-icon-button" id="back-to-top" aria-label="back-to-top" href="#"><span class="icon iconify" data-icon="ri:arrow-up-s-line"></span><svg class="progress-circle-container" viewBox="0 0 100 100"><circle class="progress-circle" id="progressCircle" cx="50" cy="50" r="48" fill="none" stroke="#6200ee" stroke-width="2" stroke-linecap="round"></circle></svg></a><a class="popup-trigger hty-icon-button icon-search" id="search" target="_blank" rel="noopener" href="https://www.google.com/search?q=site:blog.kirakira.eu" title="搜索"><span class="site-state-item-icon"><span class="icon iconify" data-icon="ri:search-line"></span></span></a><!-- hexo injector body_end start --><script src="/js/hexo-tag-common.js"></script><!-- hexo injector body_end end --></body></html>
